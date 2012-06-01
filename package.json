@@ -1,0 +1,45 @@
+{
+  "name": "tc39-wiki",
+  "version": "0.0.1",
+  "description": "Sources to the TC39 wiki (and GitHub WebHook).",
+  "keywords": [
+    "tc39",
+    "harmony",
+    "ES.next",
+    "wiki"
+  ],
+  "homepage": "https://github.com/tc39/wiki",
+  "author": "Dave Herman <dherman@mozilla.com> (https://github.com/dherman)",
+  "bugs": {
+    "email": "dherman@mozilla.com",
+    "url": "https://github.com/tc39/wiki/issues"
+  },
+  "license": "MIT",
+  "main": "lib/wiki.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tc39/wiki.git"
+  },
+  "engine": {
+    "node": ">=0.6.17"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "dependencies": {
+    "cjson": "0.0.6",
+    "express": "~2.5.9",
+    "gift": "0.0.5",
+    "codex": "~0.2.3",
+    "ncp": "~0.2.6",
+    "rimraf": "~2.0.1",
+    "async": "~0.1.22",
+    "connect": "~2.3.0",
+    "optimist": "~0.3.4"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
