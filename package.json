@@ -33,7 +33,7 @@
     "ncp": "~0.2.6",
     "rimraf": "~2.0.1",
     "async": "~0.1.22",
-    "connect": "~2.3.0",
+    "connect": "~2.3.0"
   },
   "devDependencies": {},
   "optionalDependencies": {},
