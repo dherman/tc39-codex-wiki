@@ -47,9 +47,9 @@ switch (command) {
   case "webhook":
     if (args.length < 1) die("Missing IP addresses", true);
     if (args.length < 2) die("Missing gh-pages path", true);
-    fs.stat(args[0], function(err, status) {
-        if (err) die("Cannot stat " + args[0] + ": " + err.message, true);
-        if (!status.isDirectory()) die(args[0] + " is not a directory", true);
+    fs.stat(args[1], function(err, status) {
+        if (err) die("Cannot stat " + args[1] + ": " + err.message, true);
+        if (!status.isDirectory()) die(args[1] + " is not a directory", true);
         wiki.webhook(parseInt(args[2]) || 8888, JSON.parse(args[0]), args[1]);
     });
     break;
