@@ -27,7 +27,6 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "cjson": "0.0.6",
     "express": "~2.5.9",
     "gift": "0.0.5",
     "codex": "~0.2.3",
@@ -35,7 +34,6 @@
     "rimraf": "~2.0.1",
     "async": "~0.1.22",
     "connect": "~2.3.0",
-    "optimist": "~0.3.4"
   },
   "devDependencies": {},
   "optionalDependencies": {},

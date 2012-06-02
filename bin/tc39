@@ -1,0 +1,86 @@
+#!/usr/bin/env node
+
+var wiki = require('../lib/wiki');
+var fs = require('fs');
+var path = require('path');
+
+var args = process.argv.slice(2);
+
+if (args.length === 0 || args[0] === "help" || args[0] === "-h" || args[0] === "--help" || args[0] === "-help") {
+    help();
+    process.exit(0);
+}
+
+var command = args.shift();
+
+switch (command) {
+  case "build":
+    wiki.build(function(err) {
+        if (err) die("Build error: " + err.message);
+        console.log("Wiki built in " + fs.realpathSync(path.join(__dirname, "..", "out")));
+    });
+    break;
+
+  case "serve":
+    wiki.build(function(err) {
+        if (err) die("Build error: " + err.message);
+        console.log("Wiki built in " + fs.realpathSync(path.join(__dirname, "..", "out")));
+        wiki.serve(parseInt(args[0]) || 8888);
+    });
+    break;
+
+  case "push":
+    if (args.length < 1) die("Missing gh-pages path", true);
+    if (args.length < 2) die("Missing commit message", true);
+    fs.stat(args[0], function(err, status) {
+        if (err) die("Cannot stat " + args[0] + ": " + err.message, true);
+        if (!status.isDirectory()) die(args[0] + " is not a directory", true);
+        wiki.build(function(err) {
+            if (err) die("Build error: " + err.message);
+            wiki.push(args[0], args[1], function(err) {
+                if (err) die("Push error: " + err.message);
+            });
+        });
+    });
+    break;
+
+  case "webhook":
+    if (args.length < 1) die("Missing IP addresses", true);
+    if (args.length < 2) die("Missing gh-pages path", true);
+    fs.stat(args[0], function(err, status) {
+        if (err) die("Cannot stat " + args[0] + ": " + err.message, true);
+        if (!status.isDirectory()) die(args[0] + " is not a directory", true);
+        wiki.webhook(parseInt(args[2]) || 8888, JSON.parse(args[0]), args[1]);
+    });
+    break;
+
+  default:
+    die("unknown command: " + command, true);
+};
+
+function die(msg, showHelp) {
+    if (showHelp) {
+        help();
+        console.error();
+    }
+    console.error(msg);
+    process.exit(1);
+}
+
+function help() {
+    console.error("Usage: tc39 <command>");
+    console.error();
+    console.error("where <command> is one of:");
+    console.error();
+    console.error("  build                    build the wiki");
+    console.error("  push path message        build and push the gh-pages branch");
+    console.error("    path                   path to gh-pages branch");
+    console.error("    message                commit message");
+    console.error("  serve [port]             build and serve the wiki");
+    console.error("    port                   server port [default: 8888]");
+    console.error("  webhook ips path [port]  run the GitHub WebHook server");
+    console.error("    ips                    JSON array of GitHub IP addresses");
+    console.error("    path                   path to gh-pages branch");
+    console.error("    port                   server port [default: 8888]");
+    console.error();
+}

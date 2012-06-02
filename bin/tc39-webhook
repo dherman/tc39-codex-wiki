@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cd $(dirname $0)
+
+case "$1" in
+  start)
+    forever start tc39 webhook '["207.97.227.253", "50.57.128.197", "108.171.174.178"]' $HOME/tc39-ghpages 8081
+    ;;
+  stop)
+    forever stop tc39
+    ;;
+  status)
+    forever list | fgrep tc39
+    ;;
+  *)
+    echo "usage: tc39-webhook start|stop|status"
+    exit 1
+    ;;
+esac

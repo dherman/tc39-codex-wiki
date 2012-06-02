@@ -6,14 +6,27 @@ This is the new home of the ECMAScript Wiki, where TC39 works on draft proposals
 
 The public site will temporarily be at [tc39.github.com/wiki](http://tc39.github.com/wiki). Once it stabilizes, it will replace the official wiki at [wiki.ecmascript.org](http://wiki.ecmascript.org).
 
-## Building locally
+## Command-line tool
 
-You can build and serve the wiki locally by running
+There's a command-line tool at `bin/tc39` that provides a few tools:
 
 ```
-$ node lib/wiki.js -p port
+Usage: tc39 <command>
+
+where <command> is one of:
+
+  build                    build the wiki
+  push path message        build and push the gh-pages branch
+    path                   path to gh-pages branch
+    message                commit message
+  serve [port]             build and serve the wiki
+    port                   server port [default: 8888]
+  webhook ips path [port]  run the GitHub WebHook server
+    ips                    JSON array of GitHub IP addresses
+    path                   path to gh-pages branch
+    port                   server port [default: 8888]
 ```
 
-By default the wiki serves on port 8888.
+You can run the command from anywhere. Building the wiki always saves to a subdirectory of this project root.
 
 (Directory watching is not yet stable so it's not enabled. It'll be enabled once the code stabilizes.)
