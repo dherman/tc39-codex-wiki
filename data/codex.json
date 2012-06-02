@@ -1,5 +1,6 @@
 {
   "locals": {
-    "title": "ECMAScript Wiki"
+    "title": "ECMAScript Wiki",
+    "base": "/tc39-codex-wiki/"
   }
 }
