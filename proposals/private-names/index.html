@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Private names</title>
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <script src="http://use.typekit.com/ruc1ksw.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/proposals">proposals</a></li>
+        <li class="crumb-2 last"><a href="/proposals/private-names">private names</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Private names</h1>
+<p><em>Champions</em>: <a href="/contributors/dave-herman">Dave Herman</a>, <a href="/contributors/allen-wirfs-brock">Allen Wirfs-Brock</a>
+
+</p>
+<p>Private names are a new, special kind of object that can be used as an unguessable property name in objects. You can use scope to control access to them so only the parts of your program that you give access to the name object can get at properties with that name.
+
+</p>
+<ul>
+<li><a href="details">detailed proposal</a></li>
+</ul>
+<h2>Private names for information hiding</h2>
+<p><strong>Example:</strong> a widely-used library might wish to provide objects that hide their implementation details so that clients don&#39;t accidentally rely on them.
+
+</p>
+<pre><code class="lang-javascript">module query {
+    import Name from <span class="string">"@name"</span>;
+
+    let elements = <span class="keyword">new</span> Name();
+
+    <span class="function"><span class="keyword">function</span> <span class="title">QueryResult</span><span class="params">(...)</span> {</span>
+        <span class="keyword">this</span>[elements] = ...;
+    }
+
+    export <span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">(selector)</span> {</span>
+        ...
+        <span class="keyword">return</span> <span class="keyword">new</span> QueryResult(...)
+    }
+}</code></pre>
+<h2>Private names for tamper resistance</h2>
+<p><strong>Example:</strong> an online game might provide a <code>Player</code> class that represents a player in the game, and encapsulates access to the player&#39;s score. To prevent tampering with the player&#39;s score, it can be made private by giving the score property a private name:
+
+</p>
+<pre><code class="lang-javascript">module player {
+    import Name from <span class="string">"@name"</span>;
+
+    <span class="comment">// unexported so no one else has access to it</span>
+    let score = <span class="keyword">new</span> Name();
+
+    export <span class="function"><span class="keyword">function</span> <span class="title">Player</span><span class="params">(username)</span> {</span>
+        <span class="keyword">this</span>.username = username;
+        <span class="keyword">this</span>[score] = <span class="number">0</span>;
+    }
+
+    <span class="comment">// retrieve the current score</span>
+    Player.prototype.getScore = <span class="keyword">function</span>() {
+        <span class="keyword">return</span> <span class="keyword">this</span>[score];
+    }
+
+    <span class="comment">// unexported so no one else has access to it</span>
+    <span class="function"><span class="keyword">function</span> <span class="title">score</span><span class="params">(p, n)</span> {</span>
+        p[score] += n;
+    }
+
+    <span class="comment">// etc...</span>
+}</code></pre>
+<h2>Private names for better subclassing</h2>
+<p><em>FIXME:</em> write this
+</p>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a> 
+          — <a href="https://github.com/tc39/wiki/data/proposals/private-names/index.md">View Source</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
