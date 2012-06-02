@@ -6,11 +6,11 @@
 html(lang='en')
   head
     title ECMAScript Wiki - #{file.title}
+    base(href="#{locals.site.base}")
     link(rel='stylesheet', href='/public/css/main.css', type='text/css', media='all')
     script(src="http://use.typekit.com/ruc1ksw.js")
     script
       try{Typekit.load();}catch(e){}
-    base(href="#{locals.site.base}")
   body
     div#breadcrumbs-container
       ol#breadcrumbs
