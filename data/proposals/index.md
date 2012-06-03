@@ -8,9 +8,9 @@ These proposals are being **officially considered** for ECMAScript Edition 6, bu
 
 ## Scoping
 
-  * [block scoped bindings](block-scoped-bindings)
+  * [block scoping](block-scoping)
   * [destructuring](destructuring)
-  * [parameter default values](parameter-default-values)
+  * [parameter defaults](parameter-defaults)
   * [rest parameters](rest-parameters)
   * [spread](spread)
 
