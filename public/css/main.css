@@ -255,7 +255,7 @@ body #breadcrumbs li .list-crumb {
   font-weight: normal;
 }
 body #breadcrumbs li.not-last:after {
-  content: "»";
+  content: "&raquo;";
   float: right;
 }
 body footer {
