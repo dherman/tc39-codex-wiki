@@ -190,7 +190,7 @@ footer {
   padding: 0;
 }
 #breadcrumbs li.not-last:after {
-  content: "»";
+  content: "&raquo;";
   float: right;
   padding: 0 8px;
 }
