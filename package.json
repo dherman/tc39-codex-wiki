@@ -29,7 +29,7 @@
   "dependencies": {
     "express": "~2.5.9",
     "gift": "0.0.5",
-    "codex": "~0.2.3",
+    "codex": "git://github.com/dherman/codex.git",
     "ncp": "~0.2.6",
     "rimraf": "~2.0.1",
     "async": "~0.1.22",
