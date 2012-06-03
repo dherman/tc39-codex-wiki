@@ -190,7 +190,7 @@ footer {
   padding: 0;
 }
 #breadcrumbs li.not-last:after {
-  content: "&raquo;";
+  content: "\00bb";
   float: right;
   padding: 0 8px;
 }
@@ -255,7 +255,7 @@ body #breadcrumbs li .list-crumb {
   font-weight: normal;
 }
 body #breadcrumbs li.not-last:after {
-  content: "&raquo;";
+  content: "\00bb";
   float: right;
 }
 body footer {
