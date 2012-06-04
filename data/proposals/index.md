@@ -21,7 +21,7 @@ These proposals are being **officially considered** for ECMAScript Edition 6, bu
   * [multiple globals](multiple-globals)
   * [object literals](object-literals)
   * [classes](classes)
-  * [private names](private-names)
+  * [name objects](name-objects)
 
 ## Control
 

@@ -1,16 +1,24 @@
 ---
-  title: Private names
+  title: Name objects
 ---
 
-# Private names
+# Name objects
 
-*Champions*: [Dave Herman](/contributors/dave-herman), [Allen Wirfs-Brock](/contributors/allen-wirfs-brock)
+*Champions*: [Dave Herman](/about/people/dave-herman), [Allen Wirfs-Brock](/about/people/allen-wirfs-brock)
 
-Private names are a new, special kind of object that can be used as an unguessable property name in objects. You can use scope to control access to them so only the parts of your program that you give access to the name object can get at properties with that name.
+Names are a new, special kind of object that can be used as a unique property name in objects. Using name objects instead of strings allows different modules to create properties that don't conflict with one another. Names can also be made private, so that they can't be accessed by anyone who doesn't have access to the name directly.
 
   * [detailed proposal](details)
 
-## Private names for information hiding
+## Unique names for better subclassing
+
+*FIXME:* write this
+
+## Unique names for safe monkey-patching
+
+*FIXME:* write this
+
+## Unique names for lightweight information hiding
 
 **Example:** a widely-used library might wish to provide objects that hide their implementation details so that clients don't accidentally rely on them.
 
@@ -39,8 +47,8 @@ module query {
 module player {
     import Name from "@name";
     
-    // unexported so no one else has access to it
-    let score = new Name();
+    // private and unexported so no one else has access to it
+    let score = new Name("score", true);
     
     export function Player(username) {
         this.username = username;
@@ -53,14 +61,10 @@ module player {
     }
     
     // unexported so no one else has access to it
-    function score(p, n) {
+    function increaseScore(p, n) {
         p[score] += n;
     }
     
     // etc...
 }
 ```
-
-## Private names for better subclassing
-
-*FIXME:* write this
