@@ -6,7 +6,7 @@
 
 *Champions*: [Dave Herman](/about/people/dave-herman), [Allen Wirfs-Brock](/about/people/allen-wirfs-brock)
 
-Names are a new, special kind of object that can be used as a unique property name in objects. Using name objects instead of strings allows different modules to create properties that don't conflict with one another. Names can also be made private, so that they can't be accessed by anyone who doesn't have access to the name directly.
+Names are a new, special kind of object that can be used as a unique property name in objects. Using name objects instead of strings allows different modules to create properties that don't conflict with one another. Names can also be made private, so that their properties can't be accessed by anyone who doesn't have access to the name directly.
 
   * [detailed proposal](details)
 
