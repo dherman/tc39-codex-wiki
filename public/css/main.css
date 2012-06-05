@@ -275,6 +275,21 @@ body.listing table#subdirs td.size {
 body.listing table#subdirs td.name {
   font-family: "Monaco", "Consolas", "Lucida Console", "monospace";
 }
+body code .keyword {
+  font-weight: bold;
+  color: #3595ae;
+}
+body code .string {
+  color: #00a33f;
+}
+body code .comment {
+  color: #999;
+}
+body code .number,
+body code .literal,
+body code .regexp {
+  color: #21439c;
+}
 h1,
 h2,
 h3,

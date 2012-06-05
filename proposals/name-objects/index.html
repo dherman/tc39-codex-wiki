@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>ECMAScript Wiki - Name objects</title>
-    <link rel="stylesheet" href="http://dherman.github.com/tc39-codex-wiki/public/css/main.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/tc39-codex-wiki/public/css/main.css" type="text/css" media="all">
     <script src="http://use.typekit.com/ruc1ksw.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
   </head>
@@ -20,7 +20,7 @@
 <p><em>Champions</em>: <a href="/tc39-codex-wiki/about/people/dave-herman">Dave Herman</a>, <a href="/tc39-codex-wiki/about/people/allen-wirfs-brock">Allen Wirfs-Brock</a>
 
 </p>
-<p>Names are a new, special kind of object that can be used as a unique property name in objects. Using name objects instead of strings allows different modules to create properties that don&#39;t conflict with one another. Names can also be made private, so that they can&#39;t be accessed by anyone who doesn&#39;t have access to the name directly.
+<p>Names are a new, special kind of object that can be used as a unique property name in objects. Using name objects instead of strings allows different modules to create properties that don&#39;t conflict with one another. Names can also be made private, so that their properties can&#39;t be accessed by anyone who doesn&#39;t have access to the name directly.
 
 </p>
 <ul>
@@ -38,16 +38,16 @@
 <p><strong>Example:</strong> a widely-used library might wish to provide objects that hide their implementation details so that clients don&#39;t accidentally rely on them.
 
 </p>
-<pre><code class="lang-javascript">module query {
-    import Name from <span class="string">"@name"</span>;
+<pre><code class="lang-javascript"><span class="keyword">module</span> query {
+    <span class="keyword">import</span> Name <span class="keyword">from</span> <span class="string">"@name"</span>;
 
-    let elements = <span class="keyword">new</span> Name();
+    <span class="keyword">let</span> elements = <span class="keyword">new</span> Name();
 
     <span class="function"><span class="keyword">function</span> <span class="title">QueryResult</span><span class="params">(...)</span> {</span>
         <span class="keyword">this</span>[elements] = ...;
     }
 
-    export <span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">(selector)</span> {</span>
+    <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">(selector)</span> {</span>
         ...
         <span class="keyword">return</span> <span class="keyword">new</span> QueryResult(...)
     }
@@ -56,13 +56,13 @@
 <p><strong>Example:</strong> an online game might provide a <code>Player</code> class that represents a player in the game, and encapsulates access to the player&#39;s score. To prevent tampering with the player&#39;s score, it can be made private by giving the score property a private name:
 
 </p>
-<pre><code class="lang-javascript">module player {
-    import Name from <span class="string">"@name"</span>;
+<pre><code class="lang-javascript"><span class="keyword">module</span> player {
+    <span class="keyword">import</span> Name <span class="keyword">from</span> <span class="string">"@name"</span>;
 
     <span class="comment">// private and unexported so no one else has access to it</span>
-    let score = <span class="keyword">new</span> Name(<span class="string">"score"</span>, <span class="literal">true</span>);
+    <span class="keyword">let</span> score = <span class="keyword">new</span> Name(<span class="string">"score"</span>, <span class="literal">true</span>);
 
-    export <span class="function"><span class="keyword">function</span> <span class="title">Player</span><span class="params">(username)</span> {</span>
+    <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">Player</span><span class="params">(username)</span> {</span>
         <span class="keyword">this</span>.username = username;
         <span class="keyword">this</span>[score] = <span class="number">0</span>;
     }
