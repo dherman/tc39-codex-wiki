@@ -1,5 +1,5 @@
 ---
-  title: About Harmony
+  title: The Harmony Process
 ---
 
-# About Harmony
+# The Harmony Process

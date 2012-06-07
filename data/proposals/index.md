@@ -8,54 +8,54 @@ These proposals are being **officially considered** for ECMAScript Edition 6, bu
 
 ## Scoping
 
-  * [block scoping](block-scoping)
-  * [destructuring](destructuring)
-  * [parameter defaults](parameter-defaults)
-  * [rest parameters](rest-parameters)
-  * [spread](spread)
+  * block scoping
+  * destructuring
+  * parameter defaults
+  * rest parameters
+  * spread
 
 ## Modularity
 
-  * [modules](modules)
-  * [standard modules](standard-modules)
-  * [multiple globals](multiple-globals)
-  * [object literals](object-literals)
-  * [classes](classes)
+  * modules
+  * standard modules
+  * multiple globals
+  * object literals
+  * classes
   * [name objects](name-objects)
 
 ## Control
 
-  * [proper tail calls](proper-tail-calls)
-  * [iterators](iterators)
-  * [generators](generators)
-  * [array comprehensions](array-comprehensions)
-  * [generator expressions](generator-expressions)
-  * [shorter function syntax](shorter-function-syntax)
+  * proper tail calls
+  * iterators
+  * generators
+  * array comprehensions
+  * generator expressions
+  * shorter function syntax
 
 ## Collections
 
-  * [weak maps](weak-maps)
-  * [maps and sets](maps-and-sets)
+  * weak maps
+  * maps and sets
 
 ## Virtualization
 
-  * [proxies](proxies)
-  * [loaders](loaders)
+  * proxies
+  * loaders
 
 ## Data
 
-  * [binary data](binary-data)
-  * [string interpolation](string-interpolation)
+  * binary data
+  * string interpolation
 
 ## API improvements
 
-  * [Object.is](Object.is)
-  * [`Number` improvements](Number-improvements)
-  * [regexp improvements](regexp-improvements)
-  * [`String` improvements](String-improvements)
-  * [`Math` improvements](Math-improvements)
-  * [`Function` improvements](Function-improvements)
+  * Object.is
+  * `Number` improvements
+  * regexp improvements
+  * `String` improvements
+  * `Math` improvements
+  * `Function` improvements
 
 ## Breaking changes
 
-  * [completion reform](completion-reform)
+  * completion reform
