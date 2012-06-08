@@ -35,7 +35,7 @@ switch (command) {
     if (args.length < 1) die("Missing gh-pages path", true);
     if (args.length < 2) die("Missing commit message", true);
     checkDirSync(args[0]);
-    wiki.build(function(err) {
+    wiki.build(config.baseURL, config.sourceURL, function(err) {
         if (err) die("Build error: " + err.message);
         wiki.push(args[0], args[1], function(err) {
             if (err) die("Push error: " + err.message);
