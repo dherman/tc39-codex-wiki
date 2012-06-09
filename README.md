@@ -20,8 +20,7 @@ where <command> is one of:
     message       commit message
   serve [port]    build and serve the wiki
     port          server port [default: 8888]
-  webhook [port]  run the GitHub WebHook server
-    port          server port [default: 8888]
+  webhook         run the GitHub WebHook server
 ```
 
 You can run the command from anywhere. Building the wiki always saves to a subdirectory of this project root.
