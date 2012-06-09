@@ -6,11 +6,11 @@
 
 ## Feature proposals
 
-Read the [feature proposals](/proposals) for ECMAScript Edition 6.
+Read [feature proposals](/proposals) for ECMAScript Edition 6.
 
 ## Preliminary sketches
 
-Read about preliminary [feature sketches](/sketches) for future editions.
+Read preliminary [feature sketches](/sketches) for future editions.
 
 ## About
 
