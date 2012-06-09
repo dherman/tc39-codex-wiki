@@ -35,7 +35,7 @@ switch (command) {
     if (args.length < 1) die("Missing commit message", true);
     wiki.build(config.baseURL, config.sourceURL, function(err) {
         if (err) die("Build error: " + err.message);
-        wiki.cloneGHPages(function(err) {
+        wiki.cloneGHPages(config.repo, function(err) {
             if (err) die("Clone error: " + err.message);
             wiki.push(args[0], function(err) {
                 if (err) die("Push error: " + err.message);
@@ -45,7 +45,7 @@ switch (command) {
     break;
 
   case "webhook":
-    wiki.cloneGHPages(function(err) {
+    wiki.cloneGHPages(config.repo, function(err) {
         if (err) die("Clone error: " + err.message);
         wiki.webhook(config.port, config.githubWebhookIPAddresses, config.baseURL, config.sourceURL);
     });
