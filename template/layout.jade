@@ -18,7 +18,7 @@ html(lang='en')
           - for (var i = 0; i < len; i++)
             - var crumbLink = crumbs.slice(0, i + 1).join('/').replace(/\.md$/, '')
             - var crumbName = crumbs[i].replace(/\.md$/, '').replace('-', ' ')
-            li(class=['crumb-' + (i+1), i < len - 1 ? 'not-last' : 'last']): a(href='/#{crumbLink}') #{crumbName}
+            li(class=['crumb-' + (i+1), i < len - 1 ? 'not-last' : 'last']): a(href='#{locals.site.baseURL}#{crumbLink}') #{crumbName}
     div#content
       div#content-body
         block content
