@@ -42,24 +42,12 @@ switch (command) {
     break;
 
   case "webhook":
-    wiki.webhook(parseInt(args[0]) || 8888,
-                 config.githubWebhookIPAddresses,
-                 config.baseURL,
-                 config.sourceURL);
+    wiki.webhook(config.port, config.githubWebhookIPAddresses, config.baseURL, config.sourceURL);
     break;
 
   default:
     die("unknown command: " + command, true);
 };
-
-// function checkDirSync(path) {
-//     try {
-//         if (!fs.statSync(path).isDirectory())
-//             die(path + " is not a directory", true);
-//     } catch (err) {
-//         die("Cannot stat " + path + ": " + err.message, true);
-//     }
-// }
 
 function die(msg, showHelp) {
     if (showHelp) {
@@ -80,7 +68,6 @@ function help() {
     console.error("    message       commit message");
     console.error("  serve [port]    build and serve the wiki");
     console.error("    port          server port [default: 8888]");
-    console.error("  webhook [port]  run the GitHub WebHook server");
-    console.error("    port          server port [default: 8888]");
+    console.error("  webhook         run the GitHub WebHook server");
     console.error();
 }
