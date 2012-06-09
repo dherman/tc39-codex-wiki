@@ -18,35 +18,10 @@
     <div id="content">
       <div id="content-body">
         <article><h1>Private names - detailed proposal</h1>
-<p>This proposal introduces a new kind of object called a <em>name object</em>, which can be used to add truly private properties to any object.
+<p>Hello, world.
 
 </p>
-<p>A name object is deeply frozen.
-
-</p>
-<p>The semantics of property lookup is generalized such that whenever [[ToString]] was used for property names in ES5, this is replaced with a new [[ToPropertyName]] operation.
-
-</p>
-<p>Every name object has an internal string value that is produced by its <code>toString</code> method.
-
-</p>
-<p>Every name object has a <code>public</code> property that is a reference to a deeply frozen object that <strong>contains no references to the name object</strong>, and whose <code>toString</code> method produces the same string as the private name object. The <code>public</code> object is <strong>not itself a name object</strong>. (In reflection API&#39;s, this prevents an ambiguity between the private name and some other property value.)
-
-</p>
-<h2>API</h2>
-<ul>
-<li><code>[new] Name(str = &lt;unspecified new string&gt;)</code></li>
-</ul>
-<p>Produces a new name object. The <code>str</code> argument is used as the result of <code>toString</code>.
-
-</p>
-<ul>
-<li><code>isName(x)</code></li>
-</ul>
-<p>Determines whether a given value is a name object.
-
-</p>
-<h2>Semantics</h2>
+<p>Hello, world.</p>
 </article>
       </div>
     </div>
