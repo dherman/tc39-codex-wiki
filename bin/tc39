@@ -32,23 +32,18 @@ switch (command) {
     break;
 
   case "push":
-    if (args.length < 1) die("Missing gh-pages path", true);
-    if (args.length < 2) die("Missing commit message", true);
-    checkDirSync(args[0]);
+    if (args.length < 1) die("Missing commit message", true);
     wiki.build(config.baseURL, config.sourceURL, function(err) {
         if (err) die("Build error: " + err.message);
-        wiki.push(args[0], args[1], function(err) {
+        wiki.push(args[0], function(err) {
             if (err) die("Push error: " + err.message);
         });
     });
     break;
 
   case "webhook":
-    if (args.length < 1) die("Missing gh-pages path", true);
-    checkDirSync(args[0]);
-    wiki.webhook(parseInt(args[1]) || 8888,
+    wiki.webhook(parseInt(args[0]) || 8888,
                  config.githubWebhookIPAddresses,
-                 args[0],
                  config.baseURL,
                  config.sourceURL);
     break;
@@ -57,14 +52,14 @@ switch (command) {
     die("unknown command: " + command, true);
 };
 
-function checkDirSync(path) {
-    try {
-        if (!fs.statSync(path).isDirectory())
-            die(path + " is not a directory", true);
-    } catch (err) {
-        die("Cannot stat " + path + ": " + err.message, true);
-    }
-}
+// function checkDirSync(path) {
+//     try {
+//         if (!fs.statSync(path).isDirectory())
+//             die(path + " is not a directory", true);
+//     } catch (err) {
+//         die("Cannot stat " + path + ": " + err.message, true);
+//     }
+// }
 
 function die(msg, showHelp) {
     if (showHelp) {
@@ -80,14 +75,12 @@ function help() {
     console.error();
     console.error("where <command> is one of:");
     console.error();
-    console.error("  build                build the wiki");
-    console.error("  push path message    build and push the gh-pages branch");
-    console.error("    path               path to gh-pages branch");
-    console.error("    message            commit message");
-    console.error("  serve [port]         build and serve the wiki");
-    console.error("    port               server port [default: 8888]");
-    console.error("  webhook path [port]  run the GitHub WebHook server");
-    console.error("    path               path to gh-pages branch");
-    console.error("    port               server port [default: 8888]");
+    console.error("  build           build the wiki");
+    console.error("  push message    build and push the gh-pages branch");
+    console.error("    message       commit message");
+    console.error("  serve [port]    build and serve the wiki");
+    console.error("    port          server port [default: 8888]");
+    console.error("  webhook [port]  run the GitHub WebHook server");
+    console.error("    port          server port [default: 8888]");
     console.error();
 }

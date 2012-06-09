@@ -15,16 +15,13 @@ Usage: tc39 <command>
 
 where <command> is one of:
 
-  build                    build the wiki
-  push path message        build and push the gh-pages branch
-    path                   path to gh-pages branch
-    message                commit message
-  serve [port]             build and serve the wiki
-    port                   server port [default: 8888]
-  webhook ips path [port]  run the GitHub WebHook server
-    ips                    JSON array of GitHub IP addresses
-    path                   path to gh-pages branch
-    port                   server port [default: 8888]
+  build           build the wiki
+  push message    build and push the gh-pages branch
+    message       commit message
+  serve [port]    build and serve the wiki
+    port          server port [default: 8888]
+  webhook [port]  run the GitHub WebHook server
+    port          server port [default: 8888]
 ```
 
 You can run the command from anywhere. Building the wiki always saves to a subdirectory of this project root.

@@ -4,7 +4,7 @@ cd $(dirname $0)
 
 case "$1" in
   start)
-    forever start tc39 webhook $HOME/tc39-ghpages 8081
+    forever start tc39 webhook 8081
     ;;
   stop)
     forever stop tc39
