@@ -17,6 +17,89 @@
     <div id="content">
       <div id="content-body">
         <article><h1>Frequently Asked Questions</h1>
+<ul>
+<li><a href="#onejs">What is One JavaScript (1JS)?</a></li>
+<li><a href="#breaking">Why don&#39;t we remove or fix bad features?</a></li>
+<li><a href="#optin">Why don&#39;t we make breaking changes with a language version?</a></li>
+<li><a href="#deprecate">Why don&#39;t we deprecate features?</a></li>
+<li><a href="#syntax">How can we use new syntax on old browsers?</a></li>
+<li><a href="#rollout">When will the next version of JavaScript be available?</a></li>
+<li><a href="#strict">Will we add new restrictions to strict mode?</a></li>
+<li><a href="#bytecode">Why don&#39;t we standardize a bytecode VM?</a></li>
+<li><a href="#classes">Classes? Is JavaScript becoming Java?</a></li>
+<li><a href="#harmony">How do we avoid design-by-committee?</a></li>
+<li><a href="#sketches">Do all those design sketches mean JS will get bloated?</a></li>
+<li><a href="#suggestions">How can I suggest a feature?</a></li>
+<li><a href="#es-discuss">I&#39;m nervous about posting to es-discuss. Any advice?</a></li>
+<li><a href="#spelling">How do you spell JavaScript? ECMAScript? Ecma?</a></li>
+</ul>
+<h2><a id="onejs"></a>What is One JavaScript (1JS)?</h2>
+<p>One JavaScript, or 1JS for short, means avoiding splintering JavaScript by making each version backwards-compatible with the previous versions. We evolve the language by adding new API&#39;s and new syntax. We don&#39;t change the behavior of existing features, and we don&#39;t add new modes or versions.
+
+</p>
+<ul>
+<li>The original <a href="https://mail.mozilla.org/pipermail/es-discuss/2011-December/019112.html">One JavaScript proposal</a></li>
+</ul>
+<h2><a id="breaking"></a>Why don&#39;t we remove or fix bad features?</h2>
+<p>If we did, existing web content would break. No browser vendor is willing to be the first to make such changes, because a rational end user perceives them as browser bugs and switches to a different browser.
+
+</p>
+<p>The only time we can make an incompatible change is if the web happens not to depend on it. There&#39;s no way to know for sure whether this is the case except by experimenting. Browser vendors can take a chance by making an incompatible change in alpha or beta versions of their browsers and seeing whether they get any bug reports about breaking content.
+
+</p>
+<h2><a id="optin"></a>Why don&#39;t we make breaking changes with a language version?</h2>
+<p>Opt-in versioning has a bad track record on the web. VBScript, JavaScript 1.2, and XHTML are good examples.
+
+</p>
+<p>Versions or modes may sound appealing, but they have the wrong defaults: an unspecified version (e.g., in a <code>script</code> tag or an inline attribute) always gets the old version&mdash;to get an improved language you always have to specify a version. It&#39;s not even possible to specify a language version in an inline HTML attribute. Maybe worst of all, adding modes or versions adds a dimension to the platform matrix for application testing and tracking platform feature availability.
+
+</p>
+<p>For all these reasons, opt-in versioning faces an uphill adoption battle. It&#39;s also a huge implementation and testing burden on platform vendors&mdash;it increases their set of sub-platforms exponentially&mdash;so browser vendors typically oppose new modes.
+
+</p>
+<h2><a id="deprecate"></a>Why don&#39;t we deprecate features?</h2>
+<p>Deprecation doesn&#39;t work on the web. Since we <a href="#breaking">can&#39;t remove bad features</a>, a developer has little incentive to stop using a feature just because somebody somewhere doesn&#39;t like it. Labeling features &quot;deprecated&quot; without ever removing them is pointless.
+
+</p>
+<h2><a id="syntax"></a>How can we use new syntax on old browsers?</h2>
+<p>New syntax takes a while to reach enough users that developers can start using it. However, adding syntax to JavaScript has historically been successful, even if it&#39;s slow. An example is <code>try</code>/<code>catch</code>, which was introduced in ES3 (1999). It took years before widely-deployed applications could use it, but it&#39;s now a full-fledged part of the web platform.
+
+</p>
+<p>A good approach to using new syntax on old browsers is to use a &quot;transpiler&quot; to compile new features to old versions of JavaScript. Google&#39;s <a href="http://code.google.com/p/traceur-compiler/">Traceur compiler</a> is an experimental project to do this for ES6.
+
+</p>
+<h2><a id="rollout"></a>When will the next version of JavaScript be available?</h2>
+<p>ECMAScript Edition 6 is targeting a 2013 spec release, but browsers are already implementing individual features.
+
+</p>
+<p>Sites like <a href="http://caniuse.com">Can I Use</a> and <a href="http://html5please.com">HTML5 Please</a> track the release and availability of features on the web platform. Hopefully these sites or others like them can track individual features of ES6 as well.
+
+</p>
+<h2><a id="strict"></a>Will we add new restrictions to strict mode?</h2>
+<p>No. Strict mode was a one-time event to fix some of the problems in ES3. Going forward, <a href="/tc39-codex-wiki/proposals/modules">modules</a> will automatically be strict, making it less necessary to opt in to strict mode explicitly to get these fixes. But the goal of <a href="#onejs">One JavaScript</a> is to avoid any more language fixes with modes.
+
+</p>
+<h2><a id="bytecode"></a>Why don&#39;t we standardize a bytecode VM?</h2>
+<h2><a id="classes"></a>Classes? Is JavaScript becoming Java?</h2>
+<h2><a id="harmony"></a>How do we avoid design-by-committee?</h2>
+<h2><a id="sketches"></a>Do all those design sketches mean JS will get bloated?</h2>
+<h2><a id="suggestions"></a>How can I suggest a feature?</h2>
+<h2><a id="es-discuss"></a>I&#39;m nervous about posting to <a href="https://mail.mozilla.org/listinfo/es-discuss">es-discuss</a>. Any advice?</h2>
+<p>Just keep it short and constructive. Everyone is welcome to contribute or provide feedback.
+
+</p>
+<p>If you aren&#39;t sure exactly what the solution or design you have in mind should look like, don&#39;t worry: just describe the <em>problem</em> you perceive. Feedback from developers about common problems can be particularly valuable.
+
+</p>
+<p>Also: please trim cited text to only the relevant parts (Gmail users: the UI hides cited text from you but it&#39;s still there&mdash;please unhide and trim!).
+
+</p>
+<h2><a id="spelling"></a>How do you spell JavaScript? ECMAScript? Ecma?</h2>
+<p>JavaScript, ECMAScript, and Ecma.
+
+</p>
+<p>Don&#39;t ask.
+</p>
 </article>
       </div>
     </div>
