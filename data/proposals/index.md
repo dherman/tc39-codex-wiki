@@ -49,7 +49,7 @@ These proposals are being **officially considered** for ECMAScript Edition 6, bu
 
 ## API improvements
 
-  * Object.is
+  * `Object.is`
   * `Number` improvements
   * regexp improvements
   * `String` improvements

@@ -15,6 +15,5 @@ Read preliminary [feature sketches](/sketches) for future editions.
 ## About
 
   * How the [Harmony process](/about/harmony) works.
-  * What is [One JavaScript](/about/onejs)?
   * [People](/about/people) working on TC39.
   * [Frequently Asked Questions](/about/faq)

@@ -8,10 +8,6 @@ fez-reset()
 html
   background-color #f0f0f0
 
-// hides the TypeKit flash of unstyled content
-.wf-loading
-  visibility hidden
-
 body
   background-color white
   margin 0 auto
@@ -94,16 +90,16 @@ footer
 // Typography
 // =============================================================================
 
-code-fonts             = "Monaco", "Consolas", "Lucida Console", "monospace"
+code-fonts             = "Consolas", "Inconsolata", "Lucida Console", "monospace"
 monospace-fonts-block  = code-fonts
 monospace-fonts-inline = code-fonts
-sans-serif-fonts       = "'Helvetica Neue'", "Helvetica", "Arial", "Geneva", "sans-serif"
-serif-fonts            = "Times", "Times New Roman", "Georgia"
+sans-serif-fonts       = "Helvetica Neue", "Helvetica", "Arial", "Geneva", "sans-serif"
+serif-fonts            = "Buenard", "Georgia", "Times", "Times New Roman"
 
 body
   font-family serif-fonts
   font-size 1.2em
-  line-height 1.4em
+  line-height 1.6em
   color #333333
   
   #breadcrumbs
@@ -140,6 +136,8 @@ body
         font-family monospace-fonts-inline
   
   code
+    font-family monospace-fonts-block
+    font-size 85%
     .keyword
       font-weight bold
       color #3595ae //#9535ae //#a535ae //#21439c //#ff5600
@@ -149,18 +147,27 @@ body
       color #999999
     .number, .literal, .regexp
       color #21439c
+  
+  pre
+    line-height: 1.1em
 
 // =============================================================================
 // Headers
 // =============================================================================
 
 h1, h2, h3, h4, h5, h6
+  text-rendering optimizelegibility
+  font-family "Helvetica Neue", "Helvetica", "Arial"
   line-height 1.0455em
 
-h1, h2, h3, h4, h5, h6, strong, b
+h1, strong, b
   font-weight bold
 
+h2, h3, h4, h5, h6
+  font-weight 500
+
 em, i
+  font-family "Gentium Basic"
   font-style italic
 
 h1
@@ -181,13 +188,6 @@ h3
 h4, h5, h6
   font-size 1.1em
 
-// @font-face
-//   font-family 'ModernPictogramsNormal'
-//   src url('/public/fonts/modernpics/modernpics-webfont.eot')
-//   src url('/public/fonts/modernpics/modernpics-webfont.eot?#iefix') format('embedded-opentype'), url('/public/fonts/modernpics/modernpics-webfont.woff') format('woff'), url('/public/fonts/modernpics/modernpics-webfont.ttf') format('truetype'), url('/public/fonts/modernpics/modernpics-webfont.svg#ModernPictogramsNormal') format('svg')
-//   font-weight normal
-//   font-style normal
-
 // =============================================================================
 // Colors
 // =============================================================================
@@ -202,11 +202,11 @@ a
 
 #content-body a
   &[href^="http:"], &[href^="https:"]
-    padding-left 1.2em
+    padding-left 1.0em
     background-image url(../images/globe4.svg)
     background-repeat no-repeat
     background-position left center
-    background-size 1.1em
+    background-size 0.9em
   &[href$=".pdf"]
     padding-left 1.3em
     background-image url(../images/pdf1.svg)
