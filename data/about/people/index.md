@@ -6,7 +6,7 @@
 
   * Erik Arvidsson, Google
   * Gavin Barraclough, Apple
-  * Nebojša Ćirić, Google
+  * Neboj&scaron;a &#262;iri&#263;, Google
   * Brendan Eich, Mozilla
   * Stefan Herhut, Intel
   * [Dave Herman](dave-herman), Mozilla
