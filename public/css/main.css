@@ -135,9 +135,6 @@ code {
 html {
   background-color: #f0f0f0;
 }
-.wf-loading {
-  visibility: hidden;
-}
 body {
   background-color: #fff;
   margin: 0 auto;
@@ -233,13 +230,13 @@ footer {
   visibility: hidden;
 }
 body {
-  font-family: "Times", "Times New Roman", "Georgia";
+  font-family: "Buenard", "Georgia", "Times", "Times New Roman";
   font-size: 1.2em;
-  line-height: 1.4em;
+  line-height: 1.6em;
   color: #333;
 }
 body #breadcrumbs {
-  font-family: "'Helvetica Neue'", "Helvetica", "Arial", "Geneva", "sans-serif";
+  font-family: "Helvetica Neue", "Helvetica", "Arial", "Geneva", "sans-serif";
 }
 body #breadcrumbs li {
   color: #333;
@@ -259,7 +256,7 @@ body #breadcrumbs li.not-last:after {
   float: right;
 }
 body footer {
-  font-family: "'Helvetica Neue'", "Helvetica", "Arial", "Geneva", "sans-serif";
+  font-family: "Helvetica Neue", "Helvetica", "Arial", "Geneva", "sans-serif";
   color: #bbb;
   font-size: 13px;
   text-transform: lowercase;
@@ -269,11 +266,15 @@ body footer a {
 }
 body.listing table#pages td.size,
 body.listing table#subdirs td.size {
-  font-family: "Monaco", "Consolas", "Lucida Console", "monospace";
+  font-family: "Consolas", "Inconsolata", "Lucida Console", "monospace";
   text-align: right;
 }
 body.listing table#subdirs td.name {
-  font-family: "Monaco", "Consolas", "Lucida Console", "monospace";
+  font-family: "Consolas", "Inconsolata", "Lucida Console", "monospace";
+}
+body code {
+  font-family: "Consolas", "Inconsolata", "Lucida Console", "monospace";
+  font-size: 85%;
 }
 body code .keyword {
   font-weight: bold;
@@ -290,26 +291,34 @@ body code .literal,
 body code .regexp {
   color: #21439c;
 }
+body pre {
+  line-height: 1.1em;
+}
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  text-rendering: optimizelegibility;
+  font-family: "Helvetica Neue", "Helvetica", "Arial";
   line-height: 1.0455em;
 }
 h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 strong,
 b {
   font-weight: bold;
 }
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
 em,
 i {
+  font-family: "Gentium Basic";
   font-style: italic;
 }
 h1 {
@@ -345,14 +354,14 @@ a:hover {
 }
 #content-body a[href^="http:"],
 #content-body a[href^="https:"] {
-  padding-left: 1.2em;
+  padding-left: 1em;
   background-image: url("../images/globe4.svg");
   background-repeat: no-repeat;
   background-position: left center;
-  -webkit-background-size: 1.1em;
-  -moz-background-size: 1.1em;
-  -o-background-size: 1.1em;
-  background-size: 1.1em;
+  -webkit-background-size: 0.9em;
+  -moz-background-size: 0.9em;
+  -o-background-size: 0.9em;
+  background-size: 0.9em;
 }
 #content-body a[href$=".pdf"] {
   padding-left: 1.3em;
