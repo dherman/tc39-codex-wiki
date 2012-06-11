@@ -4,7 +4,7 @@
 
 # Frequently Asked Questions
 
-  * [What is One JavaScript (1JS)?](#onejs)
+  * [What is One JavaScript?](#onejs)
   * [Why don't we remove or fix bad features?](#breaking)
   * [Why don't we make breaking changes with a language version?](#optin)
   * [Why don't we deprecate features?](#deprecate)
@@ -19,7 +19,7 @@
   * [I'm nervous about posting to es-discuss. Any advice?](#es-discuss)
   * [How do you spell JavaScript? ECMAScript? Ecma?](#spelling)
 
-## <a id="onejs"></a>What is One JavaScript (1JS)?
+## <a id="onejs"></a>What is One JavaScript?
 
 One JavaScript, or 1JS for short, means avoiding splintering JavaScript by making each version backwards-compatible with the previous versions. We evolve the language by adding new API's and new syntax. We don't change the behavior of existing features, and we don't add new modes or versions.
 
@@ -61,13 +61,23 @@ No. Strict mode was a one-time event to fix some of the problems in ES3. Going f
 
 ## <a id="bytecode"></a>Why don't we standardize a bytecode VM?
 
+Bytecode languages often require a verifier which can hurt startup time, and lead to code bloat which can affect download footprint and network latency. JavaScript successfully serves as a target for compilers from other source languages, and one of the explicit goals of TC39 is to add features that help code generators in addition to programmers.
+
 ## <a id="classes"></a>Classes? Is JavaScript becoming Java?
+
+No way! The proposed classes for ES6 are a syntax for JavaScript's ubiquitous constructor-and-prototype pattern. Classes are completely dynamic&mdash;in fact, they're even an expression form, so you can very easily and expressively generate new classes at runtime.
 
 ## <a id="harmony"></a>How do we avoid design-by-committee?
 
+TC39 uses the [Harmony process](harmony) for design work. Small teams work independently on a design sketch and present it to the rest of the committee for discussion. These teams act as the *champions* for their design. If the committee decides the design has become promising enough to be worth pursuing, the sketch is promoted to an official proposal. The champions of the proposal continue to lead the design work and refinements to the proposal.
+
 ## <a id="sketches"></a>Do all those design sketches mean JS will get bloated?
 
+Definitely not. Most design sketches are not accepted as official proposals. The design process requires going through many, many ideas before picking the best ones. TC39 makes design sketches public to encourage as much community feedback as possible, as early as possible.
+
 ## <a id="suggestions"></a>How can I suggest a feature?
+
+Send an email to [es-discuss](https://mail.mozilla.org/listinfo/es-discuss)!
 
 ## <a id="es-discuss"></a>I'm nervous about posting to [es-discuss](https://mail.mozilla.org/listinfo/es-discuss). Any advice?
 
