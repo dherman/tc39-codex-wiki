@@ -230,13 +230,13 @@ footer {
   visibility: hidden;
 }
 body {
-  font-family: "Buenard", "Georgia", "Times", "Times New Roman";
+  font-family: "Buenard", "Cambria", "Liberation Serif", "Georgia", "Times", "Times New Roman";
   font-size: 1.2em;
   line-height: 1.6em;
   color: #333;
 }
 body #breadcrumbs {
-  font-family: "Helvetica Neue", "Helvetica", "Arial", "Geneva", "sans-serif";
+  font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
 }
 body #breadcrumbs li {
   color: #333;
@@ -256,13 +256,16 @@ body #breadcrumbs li.not-last:after {
   float: right;
 }
 body footer {
-  font-family: "Helvetica Neue", "Helvetica", "Arial", "Geneva", "sans-serif";
+  font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
   color: #bbb;
   font-size: 13px;
   text-transform: lowercase;
 }
 body footer a {
   color: #bbb;
+}
+body footer .footsep {
+  margin: 0 0.5em;
 }
 body.listing table#pages td.size,
 body.listing table#subdirs td.size {
