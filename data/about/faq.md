@@ -57,7 +57,7 @@ Sites like [Can I Use](http://caniuse.com) and [HTML5 Please](http://html5please
 
 ## <a id="strict"></a>Will we add new restrictions to strict mode?
 
-No. Strict mode was a one-time event to fix some of the problems in ES3. Going forward, [modules](/proposals/modules) will automatically be strict, making it less necessary to opt in to strict mode explicitly to get these fixes. But the goal of [One JavaScript](#onejs) is to avoid any more language fixes with modes.
+No. Strict mode was a one-time event to fix some of the problems in ES3. Going forward, [modules](/es6/modules) will automatically be strict, making it less necessary to opt in to strict mode explicitly to get these fixes. But the goal of [One JavaScript](#onejs) is to avoid any more language fixes with modes.
 
 ## <a id="bytecode"></a>Why don't we standardize a bytecode VM?
 
