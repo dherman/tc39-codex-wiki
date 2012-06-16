@@ -321,7 +321,7 @@ h6 {
 }
 em,
 i {
-  font-family: "Gentium Basic";
+  font-family: "Gentium Basic", "Cambria", "Liberation Serif", "Georgia", "Times", "Times New Roman";
   font-style: italic;
 }
 h1 {
@@ -335,18 +335,18 @@ h6 {
   margin-top: 1.5em;
 }
 h1 {
-  font-size: 1.3em;
+  font-size: 1.5em;
 }
 h2 {
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
 h3 {
-  font-size: 1.15em;
+  font-size: 1em;
 }
 h4,
 h5,
 h6 {
-  font-size: 1.1em;
+  font-size: 0.7em;
 }
 a {
   color: #1040a0;

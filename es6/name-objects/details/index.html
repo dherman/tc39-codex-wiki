@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Name objects - detailed proposal</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/tc39-codex-wiki/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/tc39-codex-wiki/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/tc39-codex-wiki/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/tc39-codex-wiki/es6">es6</a></li>
+        <li class="crumb-2 not-last"><a href="/tc39-codex-wiki/es6/name-objects">name objects</a></li>
+        <li class="crumb-3 last"><a href="/tc39-codex-wiki/es6/name-objects/details">details</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Name objects - detailed proposal</h1>
+<p>This proposal introduces a new kind of object called a <em>name object</em>, which can be used to add truly private properties to any object. The semantics of property lookup is generalized such that whenever [[ToString]] was used for property names in ES5, this is replaced with a new [[ToPropertyName]] operation.
+
+</p>
+<h2>API</h2>
+<p>The <code>@name</code> module provides the following API:
+
+</p>
+<ul>
+<li><code>[new] Name(str = &lt;unspecified new string&gt;, priv = false)</code></li>
+</ul>
+<p>Produces a new name object. The <code>str</code> argument is used as the result of <code>toString</code>. The <code>priv</code> argument indicates whether the name is private.
+
+</p>
+<ul>
+<li><code>isName(x)</code></li>
+</ul>
+<p>Determines whether a given value is a name object.
+
+</p>
+<h2>Semantics</h2>
+<p>This proposal replaces the use of [[ToString]] for performing property access with a new [[ToPropertyName]] operation, which behaves exactly the same as [[ToString]] except with name objects, which are returned as is. Object property tables can be keyed by both strings and name objects.
+
+</p>
+<p>Unlike string property names, when defining a new property with a name object, the enumerability attribute of the new property defaults to <strong>false</strong>.
+
+</p>
+<h3>Private names</h3>
+<p>A private name object is a name object that was created with the <code>priv</code> flag set to <code>true</code>.
+
+</p>
+<p>Every private name object has a <code>public</code> property that is a reference to a deeply frozen object that <strong>contains no references to the name object</strong>, and whose <code>toString</code> method produces the same string as the private name object. The <code>public</code> object is <strong>not itself a name object</strong>. (In reflection API&#39;s, this prevents an ambiguity between the private name and some other property value.)
+
+</p>
+<p>Private names are not reflected by any of the core semantic algorithms except for proxy traps. In particular, private names are not reflected by:
+
+</p>
+<ul>
+<li><code>Object.getOwnPropertyNames</code></li>
+<li><code>for</code>...<code>in</code></li>
+</ul>
+<p>When proxy traps are invoked for a private name, they receive the name’s <code>public</code> property instead of the name itself. This prevents unintended leakage of the private name, but still identifies the name to code that already has access to it. For example:
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> key = <span class="keyword">new</span> Name(<span class="string">"key"</span>, <span class="literal">true</span>);
+...
+<span class="keyword">var</span> proxy = <span class="keyword">new</span> Proxy(target, {
+    ...
+    get: <span class="keyword">function</span>(receiver, name) {
+        <span class="keyword">if</span> (name === key.public)
+            ...
+        <span class="keyword">else</span>
+            ...
+    },
+    ...
+});</code></pre>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/name-objects/details.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

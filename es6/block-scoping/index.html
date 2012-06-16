@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Block scoping</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/tc39-codex-wiki/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/tc39-codex-wiki/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/tc39-codex-wiki/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/tc39-codex-wiki/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/tc39-codex-wiki/es6/block-scoping">block scoping</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Block scoping</h1>
+<p><em>Champions</em>: <a href="/tc39-codex-wiki/about/people/dave-herman">Dave Herman</a>, <a href="/tc39-codex-wiki/about/people/mark-miller">Mark Miller</a>
+
+</p>
+<p>Block scoping introduces new declaration forms for defining variables scoped to a single block. This includes:
+
+</p>
+<ul>
+<li><code>let</code>: syntactically similar to <code>var</code>, but defines a variable in the current block</li>
+<li><code>function</code>: allow <code>function</code> declarations in nested blocks</li>
+<li><code>const</code>: like <code>let</code>, but for read-only constant declarations</li>
+</ul>
+<h2>A better <code>var</code></h2>
+<p>Using <code>let</code> in place of <code>var</code> makes it easier to define block-local variables without worrying about them clashing with variables elsewhere in the same function body.
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">log</span><span class="params">(msg)</span> {</span> ... }
+
+<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x)</span> {</span>
+    <span class="keyword">if</span> (...) {
+        <span class="keyword">let</span> { log, sin, cos } = Math;
+        ... log(x) ...
+    }
+    log(<span class="string">"done computing f()"</span>);
+}</code></pre>
+<h2>Closures in loops</h2>
+<p>Using <code>let</code> makes it easier to create closures within loops:
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) {
+    <span class="keyword">let</span> x = a[i];
+    element.onclick = <span class="keyword">function</span>() {
+        ... x ...
+    };
+}</code></pre>
+<h2>Closures in <code>for</code> loops</h2>
+<p><em>FIXME</em>: example
+
+</p>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/block-scoping/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
