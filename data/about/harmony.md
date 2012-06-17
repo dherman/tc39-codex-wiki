@@ -18,7 +18,7 @@ Proposals start out in the form of [feature sketches](/sketches) (committee memb
 
 When TC39 agrees that a feature is important and promising enough to consider for inclusion in the next edition of the standard, it gets promoted to official proposal status (often referred to as "achieving Harmony" or having "Harmony status"). Reaching proposal status is *not* a guarantee that a feature will be included, but it indicates a higher degree of confidence.
 
-TC39 sets a deadline for accepting proposals for a given edition. The deadline for [ES6 proposals](/es6) was April, 2011; no new major proposals are being considered for ES6.
+TC39 sets a deadline for accepting proposals for a given edition. The deadline for [ES6 proposals](/es6) was May, 2011; no new major proposals are being considered for ES6.
 
 ### Standard
 
