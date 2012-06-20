@@ -1,6 +1,20 @@
 @import 'nib'
 @import 'fez'
 
+border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  -ms-border-radius arguments
+  -o-border-radius arguments
+  border-radius arguments
+
+box-shadow()
+  -webkit-box-shadow arguments
+  -moz-box-shadow arguments
+  -ms-box-shadow arguments
+  -o-box-shadow arguments
+  box-shadow arguments
+
 global-reset()
 
 fez-reset()
@@ -229,3 +243,9 @@ a
 
 img.logo
   float right
+
+img.person
+  float right
+  margin-bottom 1em
+  border-radius(8px)
+  box-shadow(1px, 1px, 3px, #888)

@@ -7,6 +7,7 @@
   * [Erik Arvidsson](erik-arvidsson), Google
   * [Gavin Barraclough](gavin-barraclough), Apple
   * [Neboj&scaron;a &#262;iri&#263;](nebojsa-ciric), Google
+  * [Doug Crockford](doug-crockford), eBay
   * [Brendan Eich](brendan-eich), Mozilla
   * [Stefan Herhut](stephan-herhut), Intel
   * [Dave Herman](dave-herman), Mozilla
