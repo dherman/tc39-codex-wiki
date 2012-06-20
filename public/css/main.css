@@ -389,3 +389,17 @@ a:hover {
 img.logo {
   float: right;
 }
+img.person {
+  float: right;
+  margin-bottom: 1em;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 1px 1px 3px #888;
+  -moz-box-shadow: 1px 1px 3px #888;
+  -ms-box-shadow: 1px 1px 3px #888;
+  -o-box-shadow: 1px 1px 3px #888;
+  box-shadow: 1px 1px 3px #888;
+}
