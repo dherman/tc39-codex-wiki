@@ -4,7 +4,7 @@
 
 # Brendan Eich
 
-<img class="person" src="/public/images/people/brendan-eich.jpg"/>
+<img class="person" src="../../../public/images/people/brendan-eich.jpg"/>
 
   * Representing: Mozilla
   * Blog: [brendaneich.com](http://brendaneich.com/)
