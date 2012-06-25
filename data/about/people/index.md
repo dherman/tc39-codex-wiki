@@ -27,26 +27,3 @@
 <tr><td><img src="../../public/images/people/rick-waldron.jpg"/></td><td class="name">[Rick Waldron](http://weblog.bocoup.com/author/rick-waldron/)</td><td>jQuery Foundation</td></tr>
 <tr><td><img src="../../public/images/people/allen-wirfs-brock.jpg"/></td><td class="name">[Allen Wirfs-Brock](http://www.wirfs-brock.com/allen/)</td><td>Mozilla</td></tr>
 </table>
-
-
-<!--
-  * Neboj&scaron;a &#262;iri&#263;, Google
-  * [Doug Crockford](doug-crockford), eBay
-  * [Brendan Eich](brendan-eich), Mozilla
-  * [Stefan Herhut](stephan-herhut), Intel
-  * [Dave Herman](dave-herman), Mozilla
-  * [Luke Hoban](luke-hoban), Microsoft
-  * [Rick Hudson](rick-hudson), Intel
-  * [Oliver Hunt](oliver-hunt), Apple
-  * [Waldemar Horwat](waldemar-horwat), Google
-  * [Yehuda Katz](yehuda-katz), jQuery Foundation
-  * [Norbert Lindenberg](norbert-lindenberg)
-  * [Mark Miller](mark-miller), Google
-  * [Andreas Rossberg](andreas-rossberg), Google
-  * [Alex Russell](alex-russell), Google
-  * [Bill Ticehurst](bill-ticehurst), Microsoft
-  * [Sam Tobin-Hochstadt](sam-tobin-hochstadt), Northeastern University
-  * [Tom Van Cutsem](tom-van-cutsem), Vrije Universiteit Brussel
-  * [Rick Waldron](rick-waldron), jQuery Foundation
-  * [Allen Wirfs-Brock](allen-wirfs-brock), Mozilla
--->
