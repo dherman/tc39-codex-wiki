@@ -391,6 +391,7 @@ img.logo {
 }
 table.people {
   border: none;
+  margin-top: 2em;
 }
 table.people td {
   vertical-align: top;
