@@ -389,17 +389,25 @@ a:hover {
 img.logo {
   float: right;
 }
-img.person {
-  float: right;
+table.people {
+  border: none;
+}
+table.people td {
+  vertical-align: top;
+}
+table.people td.name {
+  padding: 0 1em;
+}
+table.people img {
+  float: left;
+  width: 48px;
+  height: 48px;
   margin-bottom: 1em;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: 1px 1px 3px #888;
-  -moz-box-shadow: 1px 1px 3px #888;
-  -ms-box-shadow: 1px 1px 3px #888;
-  -o-box-shadow: 1px 1px 3px #888;
-  box-shadow: 1px 1px 3px #888;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  position: relative;
+  top: 5px;
 }
