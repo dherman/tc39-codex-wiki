@@ -37,7 +37,7 @@ switch (command) {
         if (err) die("Build error: " + err.message);
         wiki.cloneGHPages(config.repo, function(err) {
             if (err) die("Clone error: " + err.message);
-            wiki.push(args[0], function(err) {
+            wiki.push(args[0], config.CNAME, function(err) {
                 if (err) die("Push error: " + err.message);
             });
         });

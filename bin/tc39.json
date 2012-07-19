@@ -1,7 +1,8 @@
 {
   "port": 8081,
   "githubWebhookIPAddresses": ["207.97.227.253", "50.57.128.197", "108.171.174.178"],
-  "baseURL": "/tc39-codex-wiki/",
+  "baseURL": "/",
+  "CNAME": "tc39wiki.calculist.org",
   "sourceURL": "https://github.com/dherman/tc39-codex-wiki",
   "repo": "git@github.com:dherman/tc39-codex-wiki.git"
 }
