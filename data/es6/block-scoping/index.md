@@ -4,7 +4,8 @@
 
 # Block scoping
 
-*Champions*: [Dave Herman](/about/people/dave-herman), [Mark Miller](/about/people/mark-miller)
+*Champions*: Dave Herman, Mark Miller, Allen Wirfs-Brock<br/>
+*Details*: [full proposal](details)
 
 Block scoping introduces new declaration forms for defining variables scoped to a single block. This includes:
 
