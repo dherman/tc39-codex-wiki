@@ -37,7 +37,6 @@ switch (command) {
         if (err) die("Build error: " + err.message);
         wiki.cloneGHPages(config.repo, function(err) {
             if (err) die("Clone error: " + err.message);
-            console.log("config.CNAME: " + config.CNAME);
             wiki.push(args[0], config.CNAME, function(err) {
                 if (err) die("Push error: " + err.message);
             });
@@ -48,7 +47,7 @@ switch (command) {
   case "webhook":
     wiki.cloneGHPages(config.repo, function(err) {
         if (err) die("Clone error: " + err.message);
-        wiki.webhook(config.port, config.githubWebhookIPAddresses, config.baseURL, config.sourceURL);
+        wiki.webhook(config.port, config.githubWebhookIPAddresses, config.baseURL, config.sourceURL, config.CNAME);
     });
     break;
 
