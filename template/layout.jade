@@ -8,21 +8,21 @@ html(lang='en')
     //-     Alegreya, Gentium Basic, Gentium Book Basic, Average, Radley
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&subset=latin,latin-ext', type='text/css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Inconsolata', type='text/css')
-    link(rel='stylesheet', href='#{locals.site.baseURL}public/css/main.css', type='text/css', media='all')
-    link(rel='icon', href="#{locals.site.baseURL}public/images/favicon.ico")
+    link(rel='stylesheet', href='/public/css/main.css', type='text/css', media='all')
+    link(rel='icon', href="/public/images/favicon.ico")
   body
     div#breadcrumbs-container
       ol#breadcrumbs
         - var crumbs = file.inFile.substring(1).split('/').filter(function(x) { return x != "index.md" })
         - var len = crumbs.length
         - if (len == 0)
-          li.crumb-0.last: a(href='#{locals.site.baseURL}') home
+          li.crumb-0.last: a(href='/') home
         - else
-          li.crumb-0.not-last: a(href='#{locals.site.baseURL}') home
+          li.crumb-0.not-last: a(href='/') home
           - for (var i = 0; i < len; i++)
             - var crumbLink = crumbs.slice(0, i + 1).join('/').replace(/\.md$/, '')
             - var crumbName = crumbs[i].replace(/\.md$/, '').replace('-', ' ')
-            li(class=['crumb-' + (i+1), i < len - 1 ? 'not-last' : 'last']): a(href='#{locals.site.baseURL}#{crumbLink}') #{crumbName}
+            li(class=['crumb-' + (i+1), i < len - 1 ? 'not-last' : 'last']): a(href='/#{crumbLink}') #{crumbName}
     div#content
       div#content-body
         block content

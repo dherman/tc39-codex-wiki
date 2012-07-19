@@ -17,7 +17,7 @@ var command = args.shift();
 
 switch (command) {
   case "build":
-    wiki.build(config.baseURL, config.sourceURL, function(err) {
+    wiki.build(config.sourceURL, function(err) {
         if (err) die("Build error: " + err.message);
         console.log("Wiki built in " + fs.realpathSync(path.join(__dirname, "..", "out")));
     });
@@ -33,7 +33,7 @@ switch (command) {
 
   case "push":
     if (args.length < 1) die("Missing commit message", true);
-    wiki.build(config.baseURL, config.sourceURL, function(err) {
+    wiki.build(config.sourceURL, function(err) {
         if (err) die("Build error: " + err.message);
         wiki.cloneGHPages(config.repo, function(err) {
             if (err) die("Clone error: " + err.message);
@@ -47,7 +47,7 @@ switch (command) {
   case "webhook":
     wiki.cloneGHPages(config.repo, function(err) {
         if (err) die("Clone error: " + err.message);
-        wiki.webhook(config.port, config.githubWebhookIPAddresses, config.baseURL, config.sourceURL, config.CNAME);
+        wiki.webhook(config.port, config.githubWebhookIPAddresses, config.sourceURL, config.CNAME);
     });
     break;
 
