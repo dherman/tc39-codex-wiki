@@ -23,7 +23,7 @@ ES6 reached "proposal freeze" in May, 2011: no new major proposals can be added,
   * multiple globals
   * object literals
   * classes
-  * [name objects](name-objects)
+  * [symbols](symbols)
 
 ## Control
 
