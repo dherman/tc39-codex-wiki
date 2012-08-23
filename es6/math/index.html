@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Math</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/math">math</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Math</h1>
+<p><em>Champions</em>: (?)<br/>
+<em>Details</em>: <a href="details">full proposal</a><br/>
+<em>Wiki</em>:
+  <em> <a href="http://wiki.ecmascript.org/doku.php?id=harmony:more_math_functions">More Math Functions</a>
+  </em> <a href="http://wiki.ecmascript.org/lib/exe/fetch.php?id=harmony%3Amore_math_functions&amp;cache=cache&amp;media=harmony:es6libraryextensions-3-28-12.2.pdf">Candidate Library Extensions Spec</a>
+
+</p>
+<p>Adds a few new functions to the <code>Math</code> object.
+
+</p>
+<h2>log10</h2>
+<p>Returns the approximate base 10 logarithm of the first parameter.
+
+</p>
+<h2>log2</h2>
+<p>Returns the approximate base 2 logarithm of the first parameter.
+
+</p>
+<h2>log1p</h2>
+<h2>expm1</h2>
+<h2>cosh</h2>
+<h2>sinh</h2>
+<h2>tanh</h2>
+<h2>acosh</h2>
+<h2>asinh</h2>
+<h2>atanh</h2>
+<h2>hypot</h2>
+<h2>trunc</h2>
+<h2>sign</h2>
+<p>This function returns the sign of the first parameter, specifiying wether the value is positive, negative or zero.
+
+</p>
+<pre><code class="lang-js">Math.sign(-<span class="number">5</span>) <span class="comment">// -1</span>
+Math.sign(<span class="number">5</span>) <span class="comment">// +1</span>
+Math.sign(<span class="number">0</span>) <span class="comment">// +0</span>
+Math.sign(-) <span class="comment">// -0</span>
+Math.sign(NaN) <span class="comment">// NaN</span></code></pre>
+<h2>Polyfill for Math.sign</h2>
+<pre><code class="lang-js">(<span class="function"><span class="keyword">function</span> <span class="params">(global)</span> {</span>
+  <span class="keyword">var</span> isNaN = Number.isNaN;
+
+  Object.defineProperty(Math, <span class="string">'sign'</span>, {
+    value: <span class="function"><span class="keyword">function</span> <span class="title">sign</span><span class="params">(value)</span> {</span>
+      <span class="keyword">var</span> n = +value;
+      <span class="keyword">if</span> (isNaN(n))
+        <span class="keyword">return</span> n <span class="comment">/* NaN */</span>;
+
+      <span class="keyword">if</span> (n === <span class="number">0</span>)
+        <span class="keyword">return</span> n; <span class="comment">// Keep the sign of the zero.</span>
+
+      <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? -<span class="number">1</span> : <span class="number">1</span>;
+    },
+    configurable: <span class="literal">true</span>,
+    enumerable: <span class="literal">false</span>,
+    writable: <span class="literal">true</span>
+  });
+})(<span class="keyword">this</span>);</code></pre>
+<h2>cbrt</h2>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/math/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
