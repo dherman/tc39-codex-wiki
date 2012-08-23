@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Symbols</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/symbols">symbols</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Symbols</h1>
+<p><em>Champions</em>: Dave Herman, Allen Wirfs-Brock
+
+</p>
+<p>Symbols are a new, special kind of object that can be used as a unique property name in objects. Using name objects instead of strings allows different modules to create properties that don&#39;t conflict with one another. Symbols can also be made private, so that their properties can&#39;t be accessed by anyone who doesn&#39;t have access to the symbol directly.
+
+</p>
+<ul>
+<li><a href="details">detailed proposal</a></li>
+</ul>
+<h2>Using symbols for better subclassing</h2>
+<p><em>FIXME:</em> write this
+
+</p>
+<h2>Using symbols for safe monkey-patching</h2>
+<p><em>FIXME:</em> write this
+
+</p>
+<h2>Using symbols for lightweight information hiding</h2>
+<p><strong>Example:</strong> a widely-used library might wish to provide objects that hide their implementation details so that clients don&#39;t accidentally rely on them.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">module</span> query {
+    <span class="keyword">import</span> Symbol <span class="keyword">from</span> <span class="string">"@symbol"</span>;
+
+    <span class="keyword">let</span> elements = <span class="keyword">new</span> Symbol();
+
+    <span class="function"><span class="keyword">function</span> <span class="title">QueryResult</span><span class="params">(...)</span> {</span>
+        <span class="keyword">this</span>[elements] = ...;
+    }
+
+    <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">(selector)</span> {</span>
+        ...
+        <span class="keyword">return</span> <span class="keyword">new</span> QueryResult(...)
+    }
+}</code></pre>
+<h2>Private symbols for tamper resistance</h2>
+<p><strong>Example:</strong> an online game might provide a <code>Player</code> class that represents a player in the game, and encapsulates access to the player&#39;s score. To prevent tampering with the player&#39;s score, it can be made private by giving the score property a private symbol:
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">module</span> player {
+    <span class="keyword">import</span> Symbol <span class="keyword">from</span> <span class="string">"@symbol"</span>;
+
+    <span class="comment">// private and unexported so no one else has access to it</span>
+    <span class="keyword">let</span> score = <span class="keyword">new</span> Symbol(<span class="string">"score"</span>, <span class="literal">true</span>);
+
+    <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">Player</span><span class="params">(username)</span> {</span>
+        <span class="keyword">this</span>.username = username;
+        <span class="keyword">this</span>[score] = <span class="number">0</span>;
+    }
+
+    <span class="comment">// retrieve the current score</span>
+    Player.prototype.getScore = <span class="keyword">function</span>() {
+        <span class="keyword">return</span> <span class="keyword">this</span>[score];
+    }
+
+    <span class="comment">// unexported so no one else has access to it</span>
+    <span class="function"><span class="keyword">function</span> <span class="title">increaseScore</span><span class="params">(p, n)</span> {</span>
+        p[score] += n;
+    }
+
+    <span class="comment">// etc...</span>
+}</code></pre>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/symbols/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
