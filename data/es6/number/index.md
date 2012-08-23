@@ -118,9 +118,8 @@ Number.toInteger(Infinity); // ?
 Number.toInteger("15"); // +0
 Number.toInteger(false); // +0
 ```
-*TOFIX* is `Number.toInteger(-0)` really `-0`? :)
+*TOFIX* is `Number.toInteger(-0)` really `-0`? :)<br/>
 *TOFIX* what should be the result of `Infinity`?
-```
 
 ## Polyfill for Number.toInteger
 
