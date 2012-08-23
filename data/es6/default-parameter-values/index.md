@@ -33,11 +33,14 @@ function foo(x,y="hello",z=this){}
 
 Any value is evaluated in the scope of the function, so `this` will resolve to whatever context the function has at runtime.
 
-## Undefined
+## Undefined and null
 
-Note that passing on `undefined` or `null` will not make that parameter get a default value, if any.
+Note that passing on `undefined` makes the parameter be initialised by the default value. This is not the case for `null`.
 
-*FIXME* Or does it?
+```js
+function foo(x=5,y=6){ log(x,y); }
+foo(undefined, null); // 5 null
+```
 
 ## Arity
 
