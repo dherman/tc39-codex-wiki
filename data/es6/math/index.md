@@ -8,6 +8,7 @@
 *Details*: [full proposal](details)<br/>
 *Wiki*:
   * [More Math Functions](http://wiki.ecmascript.org/doku.php?id=harmony:more_math_functions)
+  * [Candidate Library Extensions Spec](http://wiki.ecmascript.org/lib/exe/fetch.php?id=harmony%3Amore_math_functions&cache=cache&media=harmony:es6libraryextensions-3-28-12.2.pdf)
 
 Adds a few new functions to the `Math` object.
 
