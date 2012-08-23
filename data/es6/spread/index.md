@@ -94,8 +94,8 @@ arr1.push(...arr2);
 
 ## Converting any array like
 
-Since the spread construct for array literals copies every item of any object
-over to a new array it is a convenient way to ensure that you have a real `Array`.
+Since the spread construct for array literals copies every property between [0, length) of any object
+into a new array it is a convenient way to ensure that you get a real `Array`.
 
 ```javascript
 var nodeList = document.querySelectorAll('div');
