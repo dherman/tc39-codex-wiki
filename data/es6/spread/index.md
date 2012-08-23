@@ -48,7 +48,7 @@ f(-1, ...args, 2, ...[3]);
 **Example:** Today if you have an array and want to create a new array with the
 existing one being part of it, the array literal syntax is no longer sufficient
 and you have to fall back to imperative code, using a combination of `push`,
-`splice`, `concat` etc. With spread syntax this becomes much more succingt.
+`splice`, `concat` etc. With spread syntax this becomes much more succinct.
 
 ```javascript
 var parts = ['shoulder', 'knees'];
