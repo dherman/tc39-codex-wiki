@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Array Comprehensions</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/array-comprehensions">array comprehensions</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Array Comprehensions</h1>
+<p><em>Champions</em>: Dave Herman, Brendan Eich<br/>
+<em>Details</em>: <a href="details">full proposal</a><br/>
+<em>ES wiki</em>: <a href="http://wiki.ecmascript.org/doku.php?id=harmony:array_comprehensions">here</a>
+
+</p>
+<p>Array comprehensions were introduced in <a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Guide/Working_with_Arrays#Array_comprehensions">JavaScript</a>. Comprehensions are a well-understood and popular language feature of list comprehensions, found in languages such as <a href="http://docs.python.org/tutorial/datastructures.html#list-comprehensions">Python</a> and <a href="http://www.haskell.org/haskellwiki/List_comprehension">Haskell</a>, among <a href="http://en.wikipedia.org/wiki/List_comprehension">many other languages</a>. The syntax was inspired by the mathematical notation of <a href="http://en.wikipedia.org/wiki/Set-builder_notation">set comprehensions</a>.
+
+</p>
+<p>Array comprehensions are a convenient, declarative form for creating computed arrays with a literal syntax that reads naturally.
+
+</p>
+<p>Per <a href="/es6/iterators">iterators</a>, default property value (not key) enumeration and custom value iteration may be done using <code>for-of</code> loop head syntax, rather than <code>for-in</code>.
+
+</p>
+<h2>Examples</h2>
+<p>Filtering an array:
+
+</p>
+<pre><code class="lang-javascript">[ x <span class="keyword">for</span> (x of a) <span class="keyword">if</span> (x.color === ‘blue’) ]</code></pre>
+<p><br/> 
+Mapping an array:
+
+</p>
+<pre><code class="lang-javascript">[ square(x) <span class="keyword">for</span> (x of [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]) ]</code></pre>
+<p><br/> 
+Cartesian product:
+
+</p>
+<pre><code class="lang-javascript">[ [i,j] <span class="keyword">for</span> (i of rows) <span class="keyword">for</span> (j of columns) ]</code></pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="/es6/iterators">Iterators</a></li>
+</ul>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/array-comprehensions/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
