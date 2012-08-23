@@ -9,12 +9,12 @@
 
 Array Improvements will include, but are not limited to, the addition of two new static Array constructor functions:
 
-  * `Array.from`: Converts a single argument that is an array-like object or list (eg. arguments, NodeList, DOMTokenList (used by classList), NamedNodeMap (used by attributes property)) into a new Array() and returns it;
+  * `Array.from`: Converts a single argument that is an array-like object or list (eg. `arguments`, `NodeList`, `DOMTokenList` (used by `classList`), `NamedNodeMap` (used by attributes property)) into a `new Array()` and returns it;
 
-  * `Array.of`: Converts a variable length of arguments to an array. Unlike Array, does not have the special case for new Array(42), which presets length (and hints to implementations to preallocate) but leaves holes in [0, length ).
+  * `Array.of`: Converts a variable length of arguments to an array. Unlike `Array`, does not have the special case for `new Array(42)`, which presets length (and hints to implementations to preallocate) but leaves holes).
 
 
-## `Array.from( arg ) [ Unary ]`
+## Array.from( arg ) [ Unary ]
 
 
 Converting arguments:
@@ -35,7 +35,7 @@ Converting _any_ Array-Like:
 
 ```javascript
 
-Array.from({ 0: "a", 1: "b", 2: "c", length: 3});
+Array.from({ 0: "a", 1: "b", 2: "c", length: 3 });
 
 // [ "a", "b" , "c" ]
 
@@ -89,7 +89,7 @@ a.from( divs );
 // [ <div class=​"some classes" data-info=​"12">​</div>​, <div data-info=​"10">​</div>​ ]
 ```
 
-## `Array.of() [ Variable Arity ]`
+## Array.of() [ Variable Arity ]
 
 Examples of common use cases:
 
