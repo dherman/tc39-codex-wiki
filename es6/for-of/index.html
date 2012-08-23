@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - for-of loop</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/for-of">for of</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>for-of loop</h1>
+<p><em>Champion</em>: Dave Herman<br/>
+<em>Details</em>: <a href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-12.6.4">ES6 draft section 12.6.4</a> 
+
+</p>
+<p>The new <code>for-of</code> loop is for looping over iterable objects.
+
+</p>
+<h2>Examples</h2>
+<p>Conveniently iterate over data in Arrays, <a href="../map-set">Sets</a>, and <a href="../map-set">Maps</a>:
+
+</p>
+<pre><code class="lang-javascript">    <span class="keyword">for</span> (<span class="keyword">let</span> word of [<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>])
+        alert(word);
+
+    <span class="keyword">let</span> s = <span class="keyword">new</span> Set([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]);
+    <span class="keyword">for</span> (<span class="keyword">let</span> value of s)
+        alert(value);
+
+    <span class="keyword">let</span> m = <span class="keyword">new</span> Map([[<span class="string">'red'</span>, <span class="string">'rojo'</span>], [<span class="string">'blue'</span>, <span class="string">'azul'</span>]]);
+    <span class="keyword">for</span> (<span class="keyword">let</span> [name, value] of m)
+        alert(name + <span class="string">" = "</span> + value);</code></pre>
+<p><code>for-of</code> is also available in <a href="../array-comprehensions">array comprehensions</a>.
+
+</p>
+<p>See <a href="../iterators">iterators</a> for examples of how to create custom iterable objects.
+
+</p>
+<h2>How for-of is different from for-in</h2>
+<p>The <code>for-of</code> and <code>for-in</code> loops look similar, but they do two very different things.
+
+</p>
+<ul>
+<li><p><code>for-in</code> is for inspecting object properties. It works on any object, and it always loops over the names of the object&#39;s enumerable properties.</p>
+</li>
+<li><p><code>for-of</code> is for looping over data. It only works on <a href="../iterators">iterable objects</a>; that is, objects with a suitable <code>[iterator]</code> method.</p>
+</li>
+</ul>
+<pre><code class="lang-javascript">    <span class="keyword">var</span> colors = <span class="keyword">new</span> Set([<span class="string">'rojo'</span>, <span class="string">'amarillo'</span>, <span class="string">'azul'</span>]);
+    colors.language = <span class="string">'es'</span>;     <span class="comment">// add an expando property</span>
+
+    <span class="keyword">for</span> (<span class="keyword">let</span> name <span class="keyword">in</span> colors)
+        alert(name);            <span class="comment">// "language" (the property name)</span>
+
+    <span class="keyword">for</span> (<span class="keyword">let</span> word of colors)
+        alert(word);            <span class="comment">// "rojo", "amarillo", "azul" (the data)</span></code></pre>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/for-of/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
