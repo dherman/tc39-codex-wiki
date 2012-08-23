@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Template Strings</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/template-strings">template strings</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Template Strings</h1>
+<p><em>Champions</em>: Mike Samuel<br/>
+<a href="http://wiki.ecmascript.org/doku.php?id=harmony:quasis">ES Wiki</a>
+
+</p>
+<p>Allows string literals with embedded expressions in them. This is often referred
+to as string interpolation. The ES Harmony name for this has histoprically been
+Quasi Litarals.
+
+</p>
+<p><em>Details</em>: <a href="details">full proposal</a>
+
+</p>
+<p>A template string uses back ticks instead of double quotes or single quotes. The
+template string can contain place holders, which use the <code>${ }</code> syntax. The
+value of the expressions in the place holders as well as the text between them
+gets passed to a function. This function is determined on the expression before
+the template string. If there is no expression before the template string the
+default template string is used.
+
+</p>
+<h2>Default template string</h2>
+<p><strong>Example:</strong> By default the template string just concatenates its part into a
+single string.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> x = <span class="number">1</span>;
+<span class="keyword">var</span> y = <span class="number">2</span>;
+`${ x } + ${ y } = ${ x + y}`  <span class="comment">// "1 + 2 = 3"</span></code></pre>
+<h2>Multiline strings</h2>
+<p><strong>Example:</strong> Template strings can be used for mutliline strings:
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> s = `a
+    b
+    c`;
+assert(s === <span class="string">'a\n    b\n    c'</span>);</code></pre>
+<p>All characters are significant so leading whitespaces on a new row are not
+ignored.
+
+
+</p>
+<h2>Tagged template strings</h2>
+<p><strong>Example:</strong> If a template string is preceded by an expression it is considered a tagged
+template string. The expression before the template string is called with the
+parsed template string.
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">tag</span><span class="params">(strings, ...values)</span> {</span>
+  assert(strings[<span class="number">0</span>] === <span class="string">'a'</span>);
+  assert(strings[<span class="number">1</span>] === <span class="string">'b'</span>);
+  assert(values[<span class="number">0</span>] === <span class="number">0</span>);
+  <span class="keyword">return</span> <span class="string">'whatever'</span>;
+}
+tag `a${ <span class="number">42</span> }b`  <span class="comment">// "whatever"</span></code></pre>
+<h2>Raw strings</h2>
+<p>The template string allows access to the string parts as they were entered. For
+example, if a string part contains <code>\n</code> then that represents two characters; <code>\</code>
+and <code>n</code> instead of a single newline character.
+
+</p>
+<p>To get access to the raw strings the template string tag function reads the
+<code>raw</code> property of the first argument.
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">r</span><span class="params">(strings, ...values)</span> {</span>
+  assert(strings.raw[<span class="number">0</span>] === <span class="string">'\\n'</span>);
+}
+
+r `\n`</code></pre>
+<p>ES6 provides a new function called <code>String.raw</code> which works like the default
+string template function except that it concatenates the raw strings.
+
+</p>
+<pre><code class="lang-javascript">String.raw `a\n${ <span class="number">42</span> }b`  <span class="comment">// "a\\n42b"</span></code></pre>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/template-strings/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
