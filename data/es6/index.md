@@ -56,7 +56,7 @@ ES6 reached "proposal freeze" in May, 2011: no new major proposals can be added,
   * [`Number` improvements](number)
   * regexp improvements
   * `String` improvements
-  * `Math` improvements
+  * [`Math` improvements](math)
   * `Function` improvements
 
 ## Breaking changes
