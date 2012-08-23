@@ -7,7 +7,8 @@
 *Champions*: Brendan Eich<br/>
 *Details*: [full proposal](details)
 
-Arrow Functions aim to address and resolve several common pain points of traditional `Function Expression`:
+
+The goal of Arrow Functions is to address and resolve several common pain points of traditional `Function Expression`:
 
   * Lexical `this` binding;
 
@@ -50,25 +51,7 @@ assert(real.borrow()() === real);
 
 ```
 
-
-
-## Grammar Changes
-
-Extend *AssignmentExpression* and define *ArrowFunctionExpression*:
-
-```ebnf
-AssignmentExpression :
-    ArrowFunctionExpression
-    ...
-
-ArrowFunctionExpression :
-    ArrowFormalParameters => [lookahead ∉ { "{" }] AssignmentExpression
-    ArrowFormalParameters => Block
-
-ArrowFormalParameters :
-    ( FormalParameterList_opt )
-    Identifier
-```
+## Details
 
 Arrow functions bind `this` lexically, bind `return` in the *Block* body case so it returns from the immediately enclosing arrow function, and preclude `break` and `continue` from referencing statements outside the immediately enclosing arrow function.
 
