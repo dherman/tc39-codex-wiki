@@ -6,7 +6,7 @@
 
 *Champions*: Dave Herman, Allen Wirfs-Brock
 
-Symbols are a new, special kind of object that can be used as a unique property name in objects. Using name objects instead of strings allows different modules to create properties that don't conflict with one another. Symbols can also be made private, so that their properties can't be accessed by anyone who doesn't have access to the symbol directly.
+Symbols are a new, special kind of object that can be used as a unique property name in objects. Using symbols instead of strings allows different modules to create properties that don't conflict with one another. Symbols can also be made private, so that their properties can't be accessed by anyone who doesn't already have direct access to the symbol.
 
   * [detailed proposal](details)
 
