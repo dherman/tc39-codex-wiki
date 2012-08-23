@@ -13,7 +13,7 @@ ES6 reached "proposal freeze" in May, 2011: no new major proposals can be added,
   * [block scoping](block-scoping)
   * destructuring
   * parameter defaults
-  * rest parameters
+  * [rest parameters](rest-parameters)
   * [spread](spread)
 
 ## Modularity
