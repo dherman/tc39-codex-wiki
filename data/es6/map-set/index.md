@@ -2,7 +2,7 @@
   title: Maps and Sets
 ---
 
-*Champions*: Mark Miller, Eric Arvidsson, Jason Orendorff<br/>
+*Champions*: Mark Miller, Erik Arvidsson, Jason Orendorff<br/>
 *Details*: [full proposal](http://wiki.ecmascript.org/doku.php?id=harmony:simple_maps_and_sets)
 
 # Maps
