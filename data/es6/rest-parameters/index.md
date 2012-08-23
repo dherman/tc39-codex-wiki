@@ -5,6 +5,8 @@
 # Rest Parameters
 
 *Champions*: Allen Wirfs-Brock, Brendan Eich, Erik Arvidsson<br/>
+[ES Wiki](http://wiki.ecmascript.org/doku.php?id=harmony:rest_parameters)
+
 
 Rest parameters provide a cleaner way of dealing with functions that takes
 arbitrary number of parameters than using `arguments`.

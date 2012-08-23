@@ -5,6 +5,7 @@
 # Spread
 
 *Champions*: Allen Wirfs-Brock, Brendan Eich, Erik Arvidsson<br/>
+[ES Wiki](http://wiki.ecmascript.org/doku.php?id=harmony:spread)
 
 The spread construct allows an expression to be expanded in places where
 multiple arguments (for function calls) or multiple elements (for array
