@@ -28,30 +28,31 @@ The absolute minimal requirements are:
 
 ```js
 
-(function() {
 
-  class EventEmitter {
-    constructor() {
-      ....
-    }
-    emit() {
-      ...
-    }
-    on() {
-      ...
-    }
-    once() {
-      ...
-    }
-    removeListener() {
-      ...
-    }
-    removeAllListeners() {
-      ...
-    }
+class EventEmitter {
+  constructor() {
+    ....
   }
-  exports.EventEmitter
-}());
+  emit() {
+    ...
+  }
+  on() {
+    ...
+  }
+  once() {
+    ...
+  }
+  removeListener() {
+    ...
+  }
+  removeAllListeners() {
+    ...
+  }
+}
+
+exports.EventEmitter = EventEmitter;
+
+```
 
 Class declarations with explicitly ommitted constructors have an implied constructor:
 
@@ -71,7 +72,7 @@ constructor(...args) {
 }
 ```
 
-This drastically simplifies code that employs inheritance strategies:
+This drastically simplifies code that requires inheritance strategies:
 
 
 ```js
@@ -83,7 +84,7 @@ class Stream extends EventEmitter {
 ```
 
 
-This is a rough approximation of Node.js Domains, as written using ES6 Class forms:
+This is a rough approximation of Node.js Domains, as written using ES6 Classes:
 
 ```js
 
@@ -185,15 +186,15 @@ TODO: Transfer from PDF
 
 ## Class Terminology
 
-- *class definition*: A *ClassDeclaration* or *ClassExpression*.
-- *class name*: The declared name bound by a *ClassDeclaration*.
-- *class*:  The set of objects consisting of a constructor function and prototype object that is referenced by the function's "prototype" property.
-- *class object*:  The constructor function component of a class.
-- *class prototype*: The prototype object component of a class.
-- *instance property*: A property of a class prototype.
-- *class property*: A property of a class object.
-- *direct class instance*: An object whose [[Prototype]] internal property is a class prototype.
-- *per instance property*: A property of a direct class instance.
+- **class definition**: A *ClassDeclaration* or *ClassExpression*.
+- **class name**: The declared name bound by a *ClassDeclaration*.
+- **class**:  The set of objects consisting of a constructor function and prototype object that is referenced by the function's "prototype" property.
+- **class object**:  The constructor function component of a class.
+- **class prototype**: The prototype object component of a class.
+- **instance property**: A property of a class prototype.
+- **class property**: A property of a class object.
+- **direct class instance**: An object whose [[Prototype]] internal property is a class prototype.
+- **per instance property**: A property of a direct class instance.
 
 
 
