@@ -144,6 +144,9 @@ a {
   color: #c30;
   text-decoration: none;
 }
+pre {
+  margin-bottom: 1.5em;
+}
 #breadcrumbs,
 #content,
 footer {
