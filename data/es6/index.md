@@ -30,7 +30,7 @@ ES6 reached "proposal freeze" in May, 2011: no new major proposals can be added,
   * proper tail calls
   * iterators
   * generators
-  * array comprehensions
+  * [array comprehensions](array-comprehensions)
   * generator expressions
   * [arrow functions](arrow-functions)
 
