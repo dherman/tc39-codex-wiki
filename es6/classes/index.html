@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Classes</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/classes">classes</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Classes</h1>
+<p><em>Champions</em>: Mark Miller, Brendan Eich, Dave Herman, Allen Wirfs-Brock<br/>
+<em>Details</em>: <a href="details">full proposal</a><br/>
+<em>ES wiki</em>: <a href="http://wiki.ecmascript.org/doku.php?id=strawman:maximally_minimal_classes">here</a>
+
+
+</p>
+<p>ECMAScript already has excellent features for defining abstractions for kinds of things. The trinity of constructor functions, prototypes, and instances are more than adequate for solving the problems that classes solve in other languages. The intent of this strawman is not to change those semantics. Instead, it’s to provide a terse and declarative surface for those semantics so that programmer intent is expressed instead of the underlying imperative machinery.
+
+
+</p>
+<p>This proposal is based on an es-discuss proposal by Russell Leggett, which was based on a simplification of Dave Herman’s minimal classes proposal. Allen Wirfs-Brock drafted the compiled proposals to form the &quot;Maximally-Minimal Class&quot;.
+
+</p>
+<p>The absolute minimal requirements are:
+
+</p>
+<ul>
+<li>has a declaration form that uses the class keyword and an identifier to create the class</li>
+<li>has a body that can include both the constructor function, as well as any instance (prototype) methods – including getter and setter properties</li>
+<li>can declare the class as a subclass of a another class (probably with the extends keyword)</li>
+<li>super is available from any of the methods or constructor function</li>
+</ul>
+<h2>Examples</h2>
+<pre><code class="lang-js">
+(<span class="keyword">function</span>() {
+
+  class EventEmitter {
+    constructor() {
+      ....
+    }
+    emit() {
+      ...
+    }
+    on() {
+      ...
+    }
+    once() {
+      ...
+    }
+    removeListener() {
+      ...
+    }
+    removeAllListeners() {
+      ...
+    }
+  }
+  exports.EventEmitter
+}());
+
+Class declarations <span class="keyword">with</span> explicitly ommitted constructors have an implied constructor:
+
+```js
+constructor() { [empty] }</code></pre>
+<p>Similarly, classes with an extends clause will have an implicit constructor that itself has an implicit super call, roughly resembling:
+
+</p>
+<pre><code class="lang-js">constructor(...args) {
+  <span class="comment">// Safety net that handles:</span>
+  <span class="comment">// "class X extends null {}"</span>
+  <span class="keyword">try</span> { super.constructor } <span class="keyword">catch</span> (e) { <span class="keyword">return</span> };
+
+  super(...args);
+}</code></pre>
+<p>This drastically simplifies code that employs inheritance strategies:
+
+
+</p>
+<pre><code class="lang-js">class Stream extends EventEmitter {
+  pipe(dest, options) {
+    ...
+  }
+}</code></pre>
+<p>This is a rough approximation of Node.js Domains, as written using ES6 Class forms:
+
+</p>
+<pre><code class="lang-js">
+<span class="keyword">var</span> stack = [];
+
+class Domain extends EventEmitter {
+  constructor() {
+    super();
+
+    <span class="keyword">this</span>.members = [];
+  }
+
+  enter() {
+    <span class="keyword">if</span> (<span class="keyword">this</span>._disposed) <span class="keyword">return</span>;
+
+    <span class="comment">// note that this might be a no-op, but we still need</span>
+    <span class="comment">// to push it onto the stack so that we can pop it later.</span>
+    exports.active = process.domain = <span class="keyword">this</span>;
+    stack.push(<span class="keyword">this</span>);
+  }
+
+  exit() {
+    <span class="keyword">if</span> (<span class="keyword">this</span>._disposed) <span class="keyword">return</span>;
+
+    <span class="comment">// exit all domains until this one.</span>
+    <span class="keyword">var</span> d;
+    <span class="keyword">do</span> {
+      d = stack.pop();
+    } <span class="keyword">while</span> (d &amp;&amp; d !== <span class="keyword">this</span>);
+
+    exports.active = stack[stack.length - <span class="number">1</span>];
+    process.domain = exports.active;
+  }
+
+  add(ee) {
+    <span class="comment">// disposed domains can't be used for new things.</span>
+    <span class="keyword">if</span> (<span class="keyword">this</span>._disposed) <span class="keyword">return</span>;
+
+    <span class="comment">// already added to this domain.</span>
+    <span class="keyword">if</span> (ee.domain === <span class="keyword">this</span>) <span class="keyword">return</span>;
+
+    <span class="comment">// has a domain already - remove it first.</span>
+    <span class="keyword">if</span> (ee.domain) {
+      ee.domain.remove(ee);
+    }
+
+    <span class="comment">// check for circular Domain->Domain links.</span>
+    <span class="comment">// This causes bad insanity!</span>
+    <span class="keyword">if</span> (<span class="keyword">this</span>.domain &amp;&amp; (ee <span class="keyword">instanceof</span> Domain)) {
+      <span class="keyword">for</span> (<span class="keyword">var</span> d = <span class="keyword">this</span>.domain; d; d = d.domain) {
+        <span class="keyword">if</span> (ee === d) <span class="keyword">return</span>;
+      }
+    }
+
+    ee.domain = <span class="keyword">this</span>;
+    <span class="keyword">this</span>.members.push(ee);
+  }
+
+  remove(ee) {
+    ee.domain = <span class="literal">null</span>;
+    <span class="keyword">var</span> index = <span class="keyword">this</span>.members.indexOf(ee);
+    <span class="keyword">if</span> (index !== -<span class="number">1</span>) {
+      <span class="keyword">this</span>.members.splice(index, <span class="number">1</span>);
+    }
+  }
+
+  run(fn) {
+    <span class="keyword">return</span> <span class="keyword">this</span>.bind(fn)();
+  };
+
+  intercept(cb) {
+    <span class="keyword">return</span> <span class="keyword">this</span>.bind(cb, <span class="literal">true</span>);
+  }
+
+  <span class="comment">// ... To Be Continued.</span>
+}
+
+
+exports.Domain = Domain;
+
+exports.create = exports.createDomain = <span class="keyword">function</span>(cb) {
+  <span class="keyword">return</span> <span class="keyword">new</span> Domain(cb);
+};
+
+exports._stack = stack;
+<span class="comment">// the active domain is always the one that we're currently in.</span>
+exports.active = <span class="literal">null</span>;</code></pre>
+<h2>Semantics</h2>
+<p><a href="http://wiki.ecmascript.org/lib/exe/fetch.php?id=strawman%3Amaximally_minimal_classes&amp;cache=cache&amp;media=strawman:maxminclasssemantics.pdf">Semantics Decisions, July 26, 2012 TC39 Meeting</a>
+
+</p>
+<p>TODO: Transfer from PDF
+
+</p>
+<h2>Class Terminology</h2>
+<ul>
+<li><em>class definition</em>: A <em>ClassDeclaration</em> or <em>ClassExpression</em>.</li>
+<li><em>class name</em>: The declared name bound by a <em>ClassDeclaration</em>.</li>
+<li><em>class</em>:  The set of objects consisting of a constructor function and prototype object that is referenced by the function&#39;s &quot;prototype&quot; property.</li>
+<li><em>class object</em>:  The constructor function component of a class.</li>
+<li><em>class prototype</em>: The prototype object component of a class.</li>
+<li><em>instance property</em>: A property of a class prototype.</li>
+<li><em>class property</em>: A property of a class object.</li>
+<li><em>direct class instance</em>: An object whose [[Prototype]] internal property is a class prototype.</li>
+<li><em>per instance property</em>: A property of a direct class instance.</li>
+</ul>
+<h2>Summary of Key Points</h2>
+<ul>
+<li>Class declarations/expressions create a constructor function/prototype pair exactly as for function declarations.</li>
+<li>The class element whose PropertyName is &quot;constructor&quot; provides the FormalParameterList and FunctionBody of the constructor function.</li>
+<li>All other CE&#39;s define properties of the prototype object using the same semantics as if they were elements of an object literal.</li>
+<li>The bond name in a class declaration is bound as if it was a declared in a <strong>const</strong> declaration initialized by a class expression</li>
+<li>There is (intentionally) no direct declarative way to define either prototype data properties (other than methods) class properties, or instance property</li>
+<li>Instance property an be created within the constructor body.</li>
+<li>Class properties and prototype data properties need be created outside the declaration.</li>
+<li>Definition of private named properties is done exactly as with object literals.</li>
+<li>Properties specified in a class definition are assigned the same attributes as if they appeared in an object literal.</li>
+<li>The bond name in a class declaration is bound as if it was a declared in a <strong>const</strong> declaration initialized by a class expression.</li>
+<li>If a constructor function needs to perform superclass initialization, it must do so by explicitly calling <code>super(/*arguments*/)</code> at some point within the constructor body.</li>
+</ul>
+<p><strong>The is intended as a closed-ended proposal and is not open for major feature additions.</strong>
+
+</p>
+<p>Future editions of ECMAScript may and probably will extend the proposed class definitions.  However, the intent for  &quot;ES6&quot; is to only include the features described in this proposal. Attempting to extend this proposal is likely to result in dead-lock that would result in the inclusion of no class definition support in &quot;ES6&quot;.
+</p>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/classes/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
