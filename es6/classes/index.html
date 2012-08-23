@@ -42,35 +42,33 @@
 </ul>
 <h2>Examples</h2>
 <pre><code class="lang-js">
-(<span class="keyword">function</span>() {
 
-  class EventEmitter {
-    constructor() {
-      ....
-    }
-    emit() {
-      ...
-    }
-    on() {
-      ...
-    }
-    once() {
-      ...
-    }
-    removeListener() {
-      ...
-    }
-    removeAllListeners() {
-      ...
-    }
+class EventEmitter {
+  constructor() {
+    ....
   }
-  exports.EventEmitter
-}());
+  emit() {
+    ...
+  }
+  on() {
+    ...
+  }
+  once() {
+    ...
+  }
+  removeListener() {
+    ...
+  }
+  removeAllListeners() {
+    ...
+  }
+}
 
-Class declarations <span class="keyword">with</span> explicitly ommitted constructors have an implied constructor:
+exports.EventEmitter = EventEmitter;</code></pre>
+<p>Class declarations with explicitly ommitted constructors have an implied constructor:
 
-```js
-constructor() { [empty] }</code></pre>
+</p>
+<pre><code class="lang-js">constructor() { [empty] }</code></pre>
 <p>Similarly, classes with an extends clause will have an implicit constructor that itself has an implicit super call, roughly resembling:
 
 </p>
@@ -81,7 +79,7 @@ constructor() { [empty] }</code></pre>
 
   super(...args);
 }</code></pre>
-<p>This drastically simplifies code that employs inheritance strategies:
+<p>This drastically simplifies code that requires inheritance strategies:
 
 
 </p>
@@ -90,7 +88,7 @@ constructor() { [empty] }</code></pre>
     ...
   }
 }</code></pre>
-<p>This is a rough approximation of Node.js Domains, as written using ES6 Class forms:
+<p>This is a rough approximation of Node.js Domains, as written using ES6 Classes:
 
 </p>
 <pre><code class="lang-js">
@@ -187,15 +185,15 @@ exports.active = <span class="literal">null</span>;</code></pre>
 </p>
 <h2>Class Terminology</h2>
 <ul>
-<li><em>class definition</em>: A <em>ClassDeclaration</em> or <em>ClassExpression</em>.</li>
-<li><em>class name</em>: The declared name bound by a <em>ClassDeclaration</em>.</li>
-<li><em>class</em>:  The set of objects consisting of a constructor function and prototype object that is referenced by the function&#39;s &quot;prototype&quot; property.</li>
-<li><em>class object</em>:  The constructor function component of a class.</li>
-<li><em>class prototype</em>: The prototype object component of a class.</li>
-<li><em>instance property</em>: A property of a class prototype.</li>
-<li><em>class property</em>: A property of a class object.</li>
-<li><em>direct class instance</em>: An object whose [[Prototype]] internal property is a class prototype.</li>
-<li><em>per instance property</em>: A property of a direct class instance.</li>
+<li><strong>class definition</strong>: A <em>ClassDeclaration</em> or <em>ClassExpression</em>.</li>
+<li><strong>class name</strong>: The declared name bound by a <em>ClassDeclaration</em>.</li>
+<li><strong>class</strong>:  The set of objects consisting of a constructor function and prototype object that is referenced by the function&#39;s &quot;prototype&quot; property.</li>
+<li><strong>class object</strong>:  The constructor function component of a class.</li>
+<li><strong>class prototype</strong>: The prototype object component of a class.</li>
+<li><strong>instance property</strong>: A property of a class prototype.</li>
+<li><strong>class property</strong>: A property of a class object.</li>
+<li><strong>direct class instance</strong>: An object whose [[Prototype]] internal property is a class prototype.</li>
+<li><strong>per instance property</strong>: A property of a direct class instance.</li>
 </ul>
 <h2>Summary of Key Points</h2>
 <ul>
