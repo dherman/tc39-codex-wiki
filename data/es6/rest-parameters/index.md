@@ -43,6 +43,40 @@ function sprintf(format, ...args) {
 format('Name: %s', 'Hello World')
 ```
 
+## Evaluation
+
+When a function with a rest parameter is called a new `Array` is populated with
+all the trailing arguments. This is always an `Array` (never `null` or
+`undefined`) even if too few arguments were passed.
+
+```javascript
+function f(x, ...rest) {
+  assert(Array.isArray(rest));
+  assert(rest.length === 0);
+}
+f();
+```
+
+
+## Trailing
+
+The rest parameter is only valid as the last parameter of a function.
+
+```javascript
+function f(...rest, more) {}  // SyntaxError
+```
+
+## Arity
+
+The arity (`length`) of the function does not include the rest parameter.
+
+```javascript
+(function(a) {}).length  // 1
+(function(...a) {}).length  // 0
+(function(a, ...b) {}).length  // 1
+```
+
+
 ## See Also
 
 - [Spread](/es6/spread)
