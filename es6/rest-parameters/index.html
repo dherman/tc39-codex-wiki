@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Rest Parameters</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/rest-parameters">rest parameters</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Rest Parameters</h1>
+<p><em>Champions</em>: Allen Wirfs-Brock, Brendan Eich, Erik Arvidsson<br/>
+<a href="http://wiki.ecmascript.org/doku.php?id=harmony:rest_parameters">ES Wiki</a>
+
+
+</p>
+<p>Rest parameters provide a cleaner way of dealing with functions that takes
+arbitrary number of parameters than using <code>arguments</code>.
+
+</p>
+<p><em>Details</em>: <a href="details">full proposal</a>
+
+</p>
+<h2>A better arguments</h2>
+<p>The <code>arguments</code> object is one of the strangest objects in ES5. It looks like an
+array but it isn&#39;t. It also magically updates the named parameters when it is
+changed. The rest parameter feature allows a function to declare that it is
+variadic.
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">sprintf</span><span class="params">(format, ...args)</span> {</span>}</code></pre>
+<p>The rest parameter is a real <code>Array</code> and it is a snapshot of the arguments
+passed to the function. Changing the array has no strange side effects.
+
+</p>
+<p><strong>Example:</strong> Below is one incomplete implementation of <code>sprintf</code>.
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">sprintf</span><span class="params">(format, ...args)</span> {</span>
+  <span class="keyword">var</span> i = <span class="number">0</span>;
+  <span class="keyword">return</span> format.replace(<span class="regexp">/%(.)/</span>, <span class="keyword">function</span>(_, c) {
+    <span class="keyword">switch</span> (c) {
+      <span class="keyword">case</span> <span class="string">'%'</span>:
+        <span class="keyword">return</span> <span class="string">'%'</span>;
+      <span class="keyword">case</span> <span class="string">'s'</span>:
+        <span class="keyword">return</span> String(args[i++]);
+    }
+  });
+}
+
+format(<span class="string">'Name: %s'</span>, <span class="string">'Hello World'</span>)</code></pre>
+<h2>Evaluation</h2>
+<p>When a function with a rest parameter is called a new <code>Array</code> is populated with
+all the trailing arguments. This is always an <code>Array</code> (never <code>null</code> or
+<code>undefined</code>) even if too few arguments were passed.
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x, ...rest)</span> {</span>
+  assert(Array.isArray(rest));
+  assert(rest.length === <span class="number">0</span>);
+}
+f();</code></pre>
+<h2>Trailing</h2>
+<p>The rest parameter is only valid as the last parameter of a function.
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(...rest, more)</span> {</span>}  <span class="comment">// SyntaxError</span></code></pre>
+<h2>Arity</h2>
+<p>The arity (<code>length</code>) of the function does not include the rest parameter.
+
+</p>
+<pre><code class="lang-javascript">(<span class="keyword">function</span>(a) {}).length  <span class="comment">// 1</span>
+(<span class="keyword">function</span>(...a) {}).length  <span class="comment">// 0</span>
+(<span class="keyword">function</span>(a, ...b) {}).length  <span class="comment">// 1</span></code></pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="/es6/spread">Spread</a></li>
+<li><a href="/es6/destructuring">Destructuring</a></li>
+</ul>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/rest-parameters/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Arrow Functions</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/arrow-functions">arrow functions</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Arrow Functions</h1>
+<p><em>Champions</em>: Brendan Eich<br/>
+<em>Details</em>: <a href="details">full proposal</a>
+
+
+</p>
+<p>The goal of Arrow Functions is to address and resolve several common pain points of traditional <code>Function Expression</code>:
+
+</p>
+<ul>
+<li><p>Lexical <code>this</code> binding;</p>
+</li>
+<li><p>Shorter syntactical form (<code>() =&gt; {}</code> vs. <code>function () {}</code>)</p>
+</li>
+</ul>
+<h2>Proposal</h2>
+<pre><code class="lang-javascript">
+<span class="comment">// Empty arrow function returns undefined</span>
+<span class="keyword">let</span> empty = () => {};
+
+<span class="comment">// Single parameter case needs no parentheses around parameter list</span>
+<span class="keyword">let</span> identity = x => x;
+
+<span class="comment">// No need for parentheses even for lower-precedence expression body</span>
+<span class="keyword">let</span> square = x => x * x;
+
+<span class="comment">// Parenthesize the body to return an object literal expression</span>
+<span class="keyword">let</span> key_maker = val => ({key: val});
+
+<span class="comment">// Statement body needs braces, must use 'return' explicitly if not void</span>
+<span class="keyword">let</span> odds = evens.map(v => v + <span class="number">1</span>);
+
+<span class="comment">// `=>` has only lexical `this`, no dynamic `this`</span>
+const obj = {
+  method: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="keyword">return</span> () => <span class="keyword">this</span>;
+  }
+};
+assert(obj.method()() === obj);
+
+<span class="keyword">let</span> fake = {steal: obj.method()};
+assert(fake.steal() === obj);
+
+<span class="comment">// But `function` still has dynamic `this` of course</span>
+<span class="keyword">let</span> real = {borrow: obj.method};
+assert(real.borrow()() === real);</code></pre>
+<h2>Details</h2>
+<p>Arrow functions bind <code>this</code> lexically, bind <code>return</code> in the <em>Block</em> body case so it returns from the immediately enclosing arrow function, and preclude <code>break</code> and <code>continue</code> from referencing statements outside the immediately enclosing arrow function.
+
+</p>
+<p>The <em>Identifier</em> primary expression <code>arguments</code> may not be used in an arrow function&#39;s body (whether expression or block form).
+
+</p>
+<p>Likewise, <code>yield</code> may not be used in an arrow function&#39;s body. Arrows cannot be generators and we do not want deep continuations.
+
+</p>
+<p>Arrow functions are like built-in functions in that both lack <code>.prototype</code> and any <code>[[Construct]]</code> internal method. So <code>new (() =&gt; {})</code> throws a <code>TypeError</code> but otherwise arrows are like functions:
+
+</p>
+<pre><code class="lang-javascript">assert(<span class="keyword">typeof</span> () => {} === <span class="string">"function"</span>);
+assert(Object.getPrototypeOf(() => {}) === Function.prototype);</code></pre>
+<p>Because <code>this</code> is lexically bound, <code>arrow.call</code> and <code>arrow.apply</code> cannot bind a different <code>this</code> parameter value, but they can pass arbitrary arguments, of course.
+
+</p>
+<p>The <em>ArrowFormalParameters</em> production requires GLR parsing or equivalent to disambiguate against the other right-hand sides of <em>AssignmentExpression</em>. For an LR(1) grammar, we can use:
+
+</p>
+<pre><code class="lang-ebnf">ArrowFormalParameters :
+    ( Expression_opt )</code></pre>
+<p>and write Supplemental Syntax to require that <em>Expression</em> reductions match <em>FormalParameterList</em>.
+
+</p>
+<p>This works because <em>Expression</em> is a cover grammar for <em>FormalParameterList</em>, with <em>Identifier</em> primary expressions covering formal parameter names, array and object literals for <a href="/es6/destructuring">desstructuring</a>, assignment for [[harmony:parameter default values]], and [[harmony:spread]] for [[harmony:rest parameters]].
+
+</p>
+<p>This cover grammar approach may require, e.g., extending [[strawman:guards]] to be legal in expressions if we add guards. We can cross that bridge later if necessary.
+
+</p>
+<p>These changes are intended to be backward-compatible: existing JS parses as before, with the same semantics. New opt-in Harmony JS may use arrow functions where allowed.
+
+
+</p>
+<h2>Rationale</h2>
+<ul>
+<li>Hard to beat C# and CoffeeScript here (we want the unparenthesized single-parameter form as in C#).<ul>
+<li>TC39 should embrace, clean-up, and extend rather than re-invent or compete with de-facto and nearby de-jure standards.</li>
+<li>However, we don&#39;t want CoffeeScript&#39;s <code>-&gt;</code>, it&#39;s confusing to have two arrows and dynamic <code>this</code> binding is an oft-fired footgun.</li>
+<li>Currently we don&#39;t make <code>()</code> or <code>{}</code> in <code>() =&gt; {}</code> optional, but we could at risk of losing consensus (but no grammatical bugs bite optionality here).</li>
+</ul>
+</li>
+<li>Lexical <code>this</code> matches the dominant cohort measured by Kevin Smith (see the [[https:*mail.mozilla.org/pipermail/es-discuss/2012-March/021126.html|BTF Measurements]] thread) that either does not use <code>this</code> or wants it lexically bound.<ul>
+<li>Best results after modifying subject code to use [[http:*wiki.ecmascript.org/doku.php?id=harmony:object_literals#object_literal_property_shorthands|method definition shorthand]] and only then scanning for <code>function</code>.</li>
+<li>From lexical <code>this</code> it follows that arrow functions are not constructors (no <code>.prototype</code> or <code>[[Construct]]</code>).</li>
+</ul>
+</li>
+<li><code>=&gt;</code> parses as if it were a low-precedence (assignment) operator joining a restricted comma expression (implicitly quoted) to a body.<ul>
+<li>This avoids precedence inversion when the body is an <em>AssignmentExpression</em>.</li>
+<li>No preference for object literal over block (see [[strawman:block vs object literal]] to keep grammar simple and match expression-statement.</li>
+</ul>
+</li>
+<li>TCP compliance &quot;above&quot; expressions -- for statements and programs -- looks like a mismatch with JS functions, old-style or arrow.<ul>
+<li><code>return</code> is problematic because users want to write early returns in async callbacks, which under TCP would throw.</li>
+<li><code>break</code> and <code>continue</code> in sync callbacks could work well but would reify as exceptions and be observable via <code>finally</code> even if uncatchable.</li>
+<li>In general the statements vs. expressions rift in JS, inherited via Java from C, means full TCP creates inevitable confusion and bugs.</li>
+</ul>
+</li>
+</ul>
+<h2>Deferred</h2>
+<ul>
+<li>Optional leading <code>(this </code><em>Initialiser</em><sub>opt</sub><code>)</code> parameter:<ul>
+<li>for explicit dynamic-<code>this</code> with [[strawman:soft_bind]] opt-in;</li>
+<li>in lieu of <code>-&gt;</code> shorthand, to avoid having two arrows.</li>
+</ul>
+</li>
+<li>Optional leading <em>Identifier</em> for named arrow function expressions.</li>
+<li>Optional leading <code>#</code> for deep freezing.</li>
+</ul>
+<h2>See Also</h2>
+<p><em>TODO</em>: Add reference links
+</p>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/arrow-functions/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

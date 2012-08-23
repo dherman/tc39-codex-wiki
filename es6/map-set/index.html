@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Maps and Sets</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/map-set">map set</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><p><em>Champions</em>: Mark Miller, Eric Arvidsson, Jason Orendorff<br/>
+<em>Details</em>: <a href="http://wiki.ecmascript.org/doku.php?id=harmony:simple_maps_and_sets">full proposal</a>
+
+</p>
+<h1>Maps</h1>
+<p>If you want a simple storage mechanism that maps any object to anything, without
+the shenanigans of prototype-based inheritance, Maps offer just what you need.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">let</span> m = <span class="keyword">new</span> Map();
+m.set(<span class="string">'something'</span>, <span class="string">'something'</span>.length);  <span class="comment">// "something" → 9</span>
+m.has(<span class="string">'something'</span>);     <span class="comment">// true</span>
+m.get(<span class="string">'something'</span>);     <span class="comment">// 9</span>
+m.<span class="keyword">delete</span>(<span class="string">'something'</span>);  <span class="comment">// true</span>
+m.has(<span class="string">'something'</span>);     <span class="comment">// false</span></code></pre>
+<p>You can also iterate through all keys and values.
+
+</p>
+<pre><code class="lang-javascript">m.set(<span class="string">'something'</span>,      <span class="string">'something'</span>.length);
+m.set(<span class="string">'something else'</span>, <span class="string">'something else'</span>.length);
+
+<span class="keyword">let</span> values = [];
+<span class="keyword">for</span> (<span class="keyword">let</span> [key, value] of m) {
+  values.push(value);
+}
+value;  <span class="comment">// [9, 14]</span></code></pre>
+<p>Instead of a for loop, you can go functional:
+
+</p>
+<pre><code class="lang-javascript">m.forEach((value, key, map) => values.push(value));</code></pre>
+<h1>Sets</h1>
+<p>Just like maps, we have an API for dealing with data we want to include or
+exclude from a fictitious bag.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">let</span> s = <span class="keyword">new</span> Set([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);  <span class="comment">// s has 1, 2 and 3.</span>
+s.has(-Infinity);  <span class="comment">// false</span>
+s.add(-Infinity);     <span class="comment">// s has 1, 2, 3, and -Infinity.</span>
+s.has(-Infinity);  <span class="comment">// true</span>
+s.<span class="keyword">delete</span>(-Infinity);  <span class="comment">// true</span>
+s.has(-Infinity);  <span class="comment">// false</span></code></pre>
+<p>Just like maps, we can iterate through values.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">let</span> values = [];
+<span class="keyword">for</span> (<span class="keyword">let</span> value of s) {
+  values.push(value);
+}
+values;  <span class="comment">// [1,2,3,-Infinity]</span></code></pre>
+<p>Let&#39;s go functional yet again!
+
+</p>
+<pre><code class="lang-javascript">s.forEach((value, value, set) => values.push(value));</code></pre>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/map-set/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Object Literal Enhancements</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/object-literal-enhancements">object literal-enhancements</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Object Literal Enhancements</h1>
+<p><em>Champions</em>: Allen Wirfs-Brock, ?<br/>
+<a href="http://wiki.ecmascript.org/doku.php?id=harmony:object_literals#object_literal_property_shorthands">ES Wiki</a>
+
+</p>
+<h2>Property Value Shorthand</h2>
+<p>Provide a shorthand for object initialisers whose property keys are initialized by variables of the same name.
+
+</p>
+<p>The example:
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">( x, y )</span> {</span>
+  <span class="keyword">return</span> { x: x, y: y };
+}</code></pre>
+<p>Would be written as:
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">( x, y )</span> {</span>
+  <span class="keyword">return</span> { x, y };
+}</code></pre>
+<h2>Method Definition Shorthand</h2>
+<p>The example:
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> o = {
+  method: <span class="keyword">function</span>() {
+    <span class="keyword">return</span> <span class="string">"Hello!"</span>;
+  }
+};</code></pre>
+<p>Would be written as:
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> o = {
+  method() {
+    <span class="keyword">return</span> <span class="string">"Hello!"</span>;
+  }
+};</code></pre>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/object-literal-enhancements/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

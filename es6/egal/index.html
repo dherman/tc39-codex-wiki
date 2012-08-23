@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Egal</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/egal">egal</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Egal</h1>
+<p><em>Champions</em>: (?)<br/>
+<em>Details</em>: <a href="details">full proposal</a><br/>
+<em>Wiki</em>: <a href="http://wiki.ecmascript.org/doku.php?id=harmony:egal">here</a>
+
+</p>
+<p>Exposes the internal <code>SameValue</code> algorithm as a function. It introduces the function as <code>Object.is</code>.
+
+</p>
+<h2>===</h2>
+<p>Main differences between <code>===</code> and <code>Object.is</code> are the way <code>NaN</code>s and (negative) zeroes are treated. A <code>NaN</code> is egal to another <code>NaN</code> and negative zeroes are not <code>egal</code> from other positive zeroes.
+
+</p>
+<pre><code class="lang-js">Object.is(<span class="number">0</span>, -<span class="number">0</span>); <span class="comment">// false</span>
+Object.is(NaN, NaN); <span class="comment">// true</span>
+
+<span class="number">0</span> === -<span class="number">0</span>; <span class="comment">// true</span>
+NaN === NaN; <span class="comment">// false</span></code></pre>
+<h2>Syntax</h2>
+<p>There is no new syntax for <code>Object.is</code>, obviously.
+
+</p>
+<h2>Polyfill</h2>
+<p>This is how you can define <code>Object.is</code> in es5:
+
+</p>
+<pre><code class="lang-js">Object.defineProperty(Object, <span class="string">'is'</span>, {
+  value: <span class="keyword">function</span>(x, y) {
+    <span class="keyword">if</span> (x === y) {
+      <span class="comment">// 0 === -0, but they are not identical</span>
+      <span class="keyword">return</span> x !== <span class="number">0</span> || <span class="number">1</span> / x === <span class="number">1</span> / y;
+    }
+
+    <span class="comment">// NaN !== NaN, but they are identical.</span>
+    <span class="comment">// NaNs are the only non-reflexive value, i.e., if x !== x,</span>
+    <span class="comment">// then x is a NaN.</span>
+    <span class="comment">// isNaN is broken: it converts its argument to number, so</span>
+    <span class="comment">// isNaN("foo") => true</span>
+    <span class="keyword">return</span> x !== x &amp;&amp; y !== y;
+  },
+  configurable: <span class="literal">true</span>,
+  enumerable: <span class="literal">false</span>,
+  writable: <span class="literal">true</span>
+});</code></pre>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/egal/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

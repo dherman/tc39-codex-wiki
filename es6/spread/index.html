@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Spread</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/spread">spread</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Spread</h1>
+<p><em>Champions</em>: Allen Wirfs-Brock, Brendan Eich, Erik Arvidsson<br/>
+<a href="http://wiki.ecmascript.org/doku.php?id=harmony:spread">ES Wiki</a>
+
+</p>
+<p>The spread construct allows an expression to be expanded in places where
+multiple arguments (for function calls) or multiple elements (for array
+literals) are expected.
+
+</p>
+<p><em>Details</em>: <a href="details">full proposal</a>
+
+
+</p>
+<h2>A better apply</h2>
+<p><strong>Example:</strong> it is common to use <code>Function.prototype.apply</code> in cases where you
+want to use an array
+as arguments to a function.
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x, y, z)</span> {</span> }
+<span class="keyword">var</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];
+f.apply(<span class="literal">null</span>, args);</code></pre>
+<p>With ES6 spread you can now write the above as
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x, y, z)</span> {</span> }
+<span class="keyword">var</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];
+f(...args);</code></pre>
+<p>Any argument in the argument list can use the spread syntax and it can be used
+multiple times.
+
+</p>
+<pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(v, w, x, y, z)</span> {</span> }
+<span class="keyword">var</span> args = [<span class="number">0</span>, <span class="number">1</span>];
+f(-<span class="number">1</span>, ...args, <span class="number">2</span>, ...[<span class="number">3</span>]);</code></pre>
+<h2>A more powerful array literal</h2>
+<p><strong>Example:</strong> Today if you have an array and want to create a new array with the
+existing one being part of it, the array literal syntax is no longer sufficient
+and you have to fall back to imperative code, using a combination of <code>push</code>,
+<code>splice</code>, <code>concat</code> etc. With spread syntax this becomes much more succinct.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> parts = [<span class="string">'shoulder'</span>, <span class="string">'knees'</span>];
+<span class="keyword">var</span> lyrics = [<span class="string">'head'</span>, ...parts, <span class="string">'and'</span>, <span class="string">'toes'</span>];</code></pre>
+<p>Just like with spread for argument lists <code>...</code> can be used anywhere in the array
+literal and it can be used multiple times.
+
+
+</p>
+<h2>Apply for new</h2>
+<p><strong>Example:</strong> In ES5 it is not possible to compose <code>new</code> with <code>apply</code> (<code>apply</code>
+does a <code>[[Construct]]</code> and not a <code>[[Call]]</code>). In ES6 the spread syntax naturally
+supports this.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> dataFields = readDateFields(database);
+<span class="keyword">var</span> d = <span class="keyword">new</span> Date(...dateFields);</code></pre>
+<h2>A better push</h2>
+<p><strong>Example:</strong> <code>push</code> is often used to push an array to the end of an existing
+array. In ES5 this is often done as
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> arr1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];
+<span class="keyword">var</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+<span class="comment">// Append all items from arr2 onto arr1</span>
+Array.prototype.push.apply(arr1, arr2);</code></pre>
+<p>In ES6 with spread this becomes:
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> arr1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];
+<span class="keyword">var</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+arr1.push(...arr2);</code></pre>
+<h2>Converting any array like</h2>
+<p>Since the spread construct for array literals copies every property between [0, length) of any object
+into a new array it is a convenient way to ensure that you get a real <code>Array</code>.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> nodeList = document.querySelectorAll(<span class="string">'div'</span>);
+<span class="keyword">var</span> array = [...nodeList];</code></pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="/es6/array-improvements">Array Improvements</a></li>
+<li><a href="/es6/spread">Spread</a></li>
+</ul>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/spread/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

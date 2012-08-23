@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Number</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/number">number</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Number</h1>
+<p><em>Champions</em>: (?)<br/>
+<em>Details</em>: <a href="details">full proposal</a><br/>
+<em>Wiki</em>:
+  <em> <a href="http://wiki.ecmascript.org/doku.php?id=harmony:number.isfinite">Number.isFinite</a>
+  </em> <a href="http://wiki.ecmascript.org/doku.php?id=harmony:number.isnan">Number.isNaN</a>
+  <em> <a href="http://wiki.ecmascript.org/doku.php?id=harmony:number.isinteger">Number.isInteger</a>
+  </em> <a href="http://wiki.ecmascript.org/doku.php?id=harmony:number.tointeger">Number.toInteger</a>
+
+</p>
+<p>Adds a few sugar functions to the <code>Number</code> object.
+
+</p>
+<h2>isFinite</h2>
+<p>The <code>Number.isFinite</code> function does the same thing as the global es5 function <code>isFinite</code> except that it doesn&#39;t coerce its parameters.
+
+</p>
+<pre><code class="lang-js">Number.isFinite(<span class="number">15</span>); <span class="comment">// true</span>
+Number.isFinite(<span class="number">0.8</span>); <span class="comment">// true</span>
+Number.isFinite(NaN); <span class="comment">// false</span>
+Number.isFinite(Infinity); <span class="comment">// false</span>
+Number.isFinite(-Infinity); <span class="comment">// false</span>
+Number.isFinite(<span class="string">"foo"</span>); <span class="comment">// false</span>
+Number.isFinite(<span class="string">"15"</span>); <span class="comment">// false (!)</span>
+Number.isFinite(<span class="literal">true</span>); <span class="comment">// false (!)</span></code></pre>
+<h2>Polyfill for Number.isFinite</h2>
+<pre><code class="lang-js">(<span class="function"><span class="keyword">function</span> <span class="params">(global)</span> {</span>
+  <span class="keyword">var</span> global_isFinite = global.isFinite;
+
+  Object.defineProperty(Number, <span class="string">'isFinite'</span>, {
+    value: <span class="function"><span class="keyword">function</span> <span class="title">isFinite</span><span class="params">(value)</span> {</span>
+      <span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">'number'</span> &amp;&amp; global_isFinite(value);
+    },
+    configurable: <span class="literal">true</span>,
+    enumerable: <span class="literal">false</span>,
+    writable: <span class="literal">true</span>
+  });
+})(<span class="keyword">this</span>);</code></pre>
+<h2>isNaN</h2>
+<p>The <code>Number.isNaN</code> function does hte same thing as the global es5 function <code>isNaN</code> except that it doesn&#39;t coerce its parameters.
+
+</p>
+<pre><code class="lang-js">Number.isNaN(NaN); <span class="comment">// true</span>
+Number.isNaN(<span class="number">15</span>); <span class="comment">// false</span>
+Number.isNaN(<span class="string">"15"</span>); <span class="comment">// false (!)</span>
+Number.isNaN(<span class="literal">true</span>); <span class="comment">// false (!)</span></code></pre>
+<h2>Polyfill for Number.isNaN</h2>
+<pre><code class="lang-js">(<span class="function"><span class="keyword">function</span> <span class="params">(global)</span> {</span>
+  <span class="keyword">var</span> global_isNaN = global.isNaN;
+
+  Object.defineProperty(Number, <span class="string">'isNaN'</span>, {
+    value: <span class="function"><span class="keyword">function</span> <span class="title">isNaN</span><span class="params">(value)</span> {</span>
+      <span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">'number'</span> &amp;&amp; global_isNaN(value);
+    },
+    configurable: <span class="literal">true</span>,
+    enumerable: <span class="literal">false</span>,
+    writable: <span class="literal">true</span>
+  });
+})(<span class="keyword">this</span>);</code></pre>
+<h2>isInteger</h2>
+<p>The <code>Number.isInteger</code> function allows you to determine whether the given value is a number value without decimals.
+
+</p>
+<pre><code class="lang-js">Number.isInteger(<span class="number">5</span>); <span class="comment">// true</span>
+Number.isInteger(-<span class="number">5</span>); <span class="comment">// true</span>
+Number.isInteger(<span class="number">5.5</span>); <span class="comment">// false</span>
+Number.isInteger(<span class="string">"15"</span>); <span class="comment">// false</span>
+Number.isInteger(<span class="literal">true</span>); <span class="comment">// false</span></code></pre>
+<h2>Polyfill for Number.isInteger</h2>
+<pre><code class="lang-js">(<span class="function"><span class="keyword">function</span> <span class="params">(global)</span> {</span>
+  <span class="keyword">var</span> floor = Math.floor,
+    isFinite = global.isFinite;
+
+  Object.defineProperty(Number, <span class="string">'isInteger'</span>, {
+    value: <span class="function"><span class="keyword">function</span> <span class="title">isInteger</span><span class="params">(value)</span> {</span>
+      <span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">'number'</span> &amp;&amp; isFinite(value) &amp;&amp;
+        value > -<span class="number">9007199254740992</span> &amp;&amp; value &lt; <span class="number">9007199254740992</span> &amp;&amp;
+        floor(value) === value;
+    },
+    configurable: <span class="literal">true</span>,
+    enumerable: <span class="literal">false</span>,
+    writable: <span class="literal">true</span>
+  });
+})(<span class="keyword">this</span>);</code></pre>
+<h2>toInteger</h2>
+<p>The <code>Number.toInteger</code> function can be used to convert any number to an integer, by dropping the decimals. This is the same as applying <code>Math.floor</code> to the value, or doing <code>foo|0</code>. Minus points for the semantics, of course.
+
+</p>
+<pre><code class="lang-js">Number.toInteger(<span class="number">5</span>); <span class="comment">// 5</span>
+Number.toInteger(<span class="number">5.5</span>); <span class="comment">// 5</span>
+Number.toInteger(-<span class="number">0</span>); <span class="comment">// -0 (?)</span>
+Number.toInteger(Infinity); <span class="comment">// ?</span>
+Number.toInteger(<span class="string">"15"</span>); <span class="comment">// +0</span>
+Number.toInteger(<span class="literal">false</span>); <span class="comment">// +0</span></code></pre>
+<p><em>TOFIX</em> is <code>Number.toInteger(-0)</code> really <code>-0</code>? :)<br/>
+<em>TOFIX</em> what should be the result of <code>Infinity</code>?
+
+</p>
+<h2>Polyfill for Number.toInteger</h2>
+<pre><code class="lang-js">(<span class="function"><span class="keyword">function</span> <span class="params">(global)</span> {</span>
+  <span class="keyword">var</span> abs = Math.abs,
+    floor = Math.floor,
+    isFinite = global.isFinite,
+    isNaN = global.isNaN;
+
+  <span class="function"><span class="keyword">function</span> <span class="title">sign</span><span class="params">(n)</span> {</span> <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? -<span class="number">1</span> : <span class="number">1</span>; }
+
+  Object.defineProperty(Number, <span class="string">'toInteger'</span>, {
+    value: <span class="function"><span class="keyword">function</span> <span class="title">toInteger</span><span class="params">(value)</span> {</span>
+      <span class="keyword">var</span> n = +value;
+      <span class="keyword">if</span> (isNaN(n))
+        <span class="keyword">return</span> +<span class="number">0</span>;
+      <span class="keyword">if</span> (n === <span class="number">0</span> || !isFinite(n))
+        <span class="keyword">return</span> n;
+      <span class="keyword">return</span> sign(n) * floor(abs(n));
+    },
+    configurable: <span class="literal">true</span>,
+    enumerable: <span class="literal">false</span>,
+    writable: <span class="literal">true</span>
+  });
+})(<span class="keyword">this</span>);</code></pre>
+<p>There&#39;s a similar one where you can use the bit-wise operators or <code>Math.floor</code> but it seems overkill to add these.
+
+
+
+
+</p>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/number/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

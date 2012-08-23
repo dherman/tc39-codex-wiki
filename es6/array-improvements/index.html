@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Array Improvements</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/array-improvements">array improvements</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Array Improvements</h1>
+<p><em>Champions</em>: Rick Waldron, Dave Herman<br/>
+<em>Details</em>: <a href="details">full proposal</a>
+
+</p>
+<p>Array Improvements will include, but are not limited to, the addition of two new static Array constructor functions:
+
+</p>
+<ul>
+<li><p><code>Array.from</code>: Converts a single argument that is an array-like object or list (eg. <code>arguments</code>, <code>NodeList</code>, <code>DOMTokenList</code> (used by <code>classList</code>), <code>NamedNodeMap</code> (used by attributes property)) into a <code>new Array()</code> and returns it;</p>
+</li>
+<li><p><code>Array.of</code>: Converts a variable length of arguments to an array. Unlike <code>Array</code>, does not have the special case for <code>new Array(42)</code>, which presets length (and hints to implementations to preallocate) but leaves holes).</p>
+</li>
+</ul>
+<h2>Array.from( arg ) [ Unary ]</h2>
+<p>Converting arguments:
+
+</p>
+<pre><code class="lang-javascript">
+<span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span> {</span>
+  <span class="keyword">var</span> args = Array.<span class="keyword">from</span>( arguments );
+
+  <span class="comment">// ... do stuff with |args|</span>
+}
+
+foo( <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span> );</code></pre>
+<p>Converting <em>any</em> Array-Like:
+
+</p>
+<pre><code class="lang-javascript">
+Array.<span class="keyword">from</span>({ <span class="number">0</span>: <span class="string">"a"</span>, <span class="number">1</span>: <span class="string">"b"</span>, <span class="number">2</span>: <span class="string">"c"</span>, length: <span class="number">3</span> });
+
+<span class="comment">// [ "a", "b" , "c" ]</span></code></pre>
+<p>Assuming the following HTML:
+
+</p>
+<pre><code class="lang-html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"some classes"</span> <span class="attribute">data-info</span>=<span class="value">"12"</span>></span><span class="tag">&lt;/<span class="title">div</span>></span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">data-info</span>=<span class="value">"10"</span>></span><span class="tag">&lt;/<span class="title">div</span>></span></code></pre>
+<p>The following examples illustrate common DOM use cases:
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> divs = document.querySelectorAll(<span class="string">"div"</span>);
+
+Array.<span class="keyword">from</span>( divs );
+<span class="comment">// [ &lt;div class=​"some classes" data-info=​"12">​&lt;/div>​, &lt;div data-info=​"10">​&lt;/div>​ ]</span>
+
+
+Array.<span class="keyword">from</span>( divs ).forEach(<span class="keyword">function</span>( node ) {
+    console.log( node );
+});
+<span class="comment">// &lt;div class=​"some classes" data-info=​"12">​&lt;/div>​</span>
+<span class="comment">// &lt;div data-info=​"10">​&lt;/div>​</span>
+
+
+Array.<span class="keyword">from</span>( divs ).filter(<span class="keyword">function</span>( node ) {
+    <span class="keyword">return</span> !!node.classList.length;
+});
+<span class="comment">// [ &lt;div class="some classes" data-info="12">&lt;/div> ]</span>
+
+
+Array.<span class="keyword">from</span>( divs ).reduce(<span class="keyword">function</span>( prev, current ) {
+    <span class="keyword">return</span> ( +prev.dataset.info ) + ( +current.dataset.info );
+});
+<span class="comment">// 22</span>
+
+
+Array.<span class="keyword">from</span>( divs[<span class="number">0</span>].classList )
+<span class="comment">// ["some", "classes"]</span>
+
+
+<span class="comment">// Now shorter then [].foo.call :)</span>
+<span class="keyword">var</span> a = Array;
+
+
+a.<span class="keyword">from</span>( divs );
+<span class="comment">// [ &lt;div class=​"some classes" data-info=​"12">​&lt;/div>​, &lt;div data-info=​"10">​&lt;/div>​ ]</span></code></pre>
+<h2>Array.of() [ Variable Arity ]</h2>
+<p>Examples of common use cases:
+
+</p>
+<pre><code class="lang-javascript">
+Array.of( <span class="number">10</span> );
+
+<span class="comment">// [ 10 ]</span></code></pre>
+<h2>See Also</h2>
+<ul>
+<li><a href="/es6/rest-parameters">Rest</a></li>
+<li><a href="/es6/spread">Spread</a></li>
+</ul>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/array-improvements/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
