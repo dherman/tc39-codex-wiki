@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Iterators</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/iterators">iterators</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><h1>Iterators</h1>
+<p><em>Champion</em>: Dave Herman<br/>
+<em>Details</em>: <a href="http://wiki.ecmascript.org/doku.php?id=harmony:iterators">ES Wiki</a>
+
+</p>
+<p>A object that represents a collection can provide an <code>[iterator]()</code> method so that other code can conveniently iterate over its contents.
+
+</p>
+<ul>
+<li><p>An <em>iterable object</em> is any object that has an <code>[iterator]()</code> method that returns an iterator.  (<code>iterator</code> is a standard <a href="../private-names">private name</a>.)</p>
+</li>
+<li><p>An <em>iterator</em> is any object that has a <code>.next()</code> method.</p>
+</li>
+<li><p>To loop over the contents of an iterable object, use a <a href="../for-of">for-of loop</a>. The loop will automatically call the <code>[iterator]()</code> method once to produce an iterator, then call <code>it.next()</code> repeatedly until the iterator throws a <code>StopIteration</code> object.</p>
+</li>
+</ul>
+<p>The design of iterators and <a href="../generators">generators</a> in ES6 follows similar features in Python.
+
+</p>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/iterators/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
