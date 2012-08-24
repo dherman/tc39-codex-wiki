@@ -28,14 +28,45 @@
 <ul>
 <li><p>An <em>iterable object</em> is any object that has an <code>[iterator]()</code> method that returns an iterator.  (<code>iterator</code> is a standard <a href="../private-names">private name</a>.)</p>
 </li>
-<li><p>An <em>iterator</em> is any object that has a <code>.next()</code> method.</p>
+<li><p>An <em>iterator</em> is any object that has a <code>.next()</code> method. This method returns the next item, if any, and throws a <code>StopIteration</code> object if there are no more items.</p>
 </li>
-<li><p>To loop over the contents of an iterable object, use a <a href="../for-of">for-of loop</a>. The loop will automatically call the <code>[iterator]()</code> method once to produce an iterator, then call <code>it.next()</code> repeatedly until the iterator throws a <code>StopIteration</code> object.</p>
+<li><p>The easiest way to produce an iterator is to write a <a href="../generators">generator</a>. The easiest way to consume an iterator is to write a <a href="../for-of">for-of loop</a>.</p>
 </li>
 </ul>
 <p>The design of iterators and <a href="../generators">generators</a> in ES6 follows similar features in Python.
 
+
 </p>
+<h2>Example</h2>
+<p>The simplest way to make an object iterable is to give it an <code>[iterator]</code> method that is a generator.
+
+</p>
+<pre><code class="lang-javascript">    <span class="comment">// Make jQuery objects iterable</span>
+    <span class="keyword">import</span> iterator <span class="keyword">from</span> <span class="string">"@iter"</span>;
+    jQuery.prototype[iterator] = <span class="keyword">function</span>* iterator() {
+        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.length; i++)
+            yield $(<span class="keyword">this</span>.get(i));
+    };
+
+    <span class="comment">// Example code looping over a jQuery collection</span>
+    <span class="keyword">var</span> t = <span class="number">500</span>;
+    <span class="keyword">for</span> (<span class="keyword">var</span> p of $(<span class="string">"p"</span>)) {
+        p.fadeOut(t);
+        t += <span class="number">200</span>;
+    }</code></pre>
+<p>The standard <code>@iter</code> module provides a few convenience functions for iterating over object property names and values:
+
+</p>
+<pre><code class="lang-javascript">    <span class="keyword">import</span> keys, values, items <span class="keyword">from</span> <span class="string">"@iter"</span>;
+
+    <span class="keyword">for</span> (<span class="keyword">var</span> k of keys(obj))
+        alert(<span class="string">"property name: "</span> + k);
+
+    <span class="keyword">for</span> (<span class="keyword">var</span> v of values(obj))
+        alert(<span class="string">"property value: "</span> + v);
+
+    <span class="keyword">for</span> (<span class="keyword">var</span> [k, v] of items(obj))
+        alert(k + <span class="string">": "</span> + v);</code></pre>
 </article>
       </div>
     </div>
