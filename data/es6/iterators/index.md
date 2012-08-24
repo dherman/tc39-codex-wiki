@@ -18,7 +18,7 @@ A object that represents a collection can provide an `[iterator]()` method so th
 The design of iterators and [generators](../generators) in ES6 follows similar features in Python.
 
 
-## Example
+## Examples
 
 The simplest way to make an object iterable is to give it an `[iterator]` method that is a generator.
 
@@ -52,3 +52,9 @@ The standard `@iter` module provides a few convenience functions for iterating o
     for (var [k, v] of items(obj))
         alert(k + ": " + v);
 ```
+
+A few builtin functions can operate on any iterable object. For example, pass any iterable object to `Set()` and it will read all the values out of that iterable object and return a set of those values:
+
+```javascript
+    var data = [1, 2, 1, 3, 1, 2, 1];
+    var s = Set(data);  // A set with the three values 1, 2, 3
