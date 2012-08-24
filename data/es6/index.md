@@ -28,7 +28,7 @@ ES6 reached "proposal freeze" in May, 2011: no new major proposals can be added,
 ## Control
 
   * proper tail calls
-  * iterators
+  * [iterators](iterators)
   * [for-of loop](for-of)
   * generators
   * [array comprehensions](array-comprehensions)
