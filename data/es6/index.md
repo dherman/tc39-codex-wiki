@@ -12,8 +12,8 @@ ES6 reached "proposal freeze" in May, 2011: no new major proposals can be added,
 
   * [block scoping](block-scoping)
   * destructuring
-  * parameter defaults
-  * rest parameters
+  * [default parameter values](default-parameter-values)
+  * [rest parameters](rest-parameters)
   * [spread](spread)
 
 ## Modularity
@@ -21,23 +21,24 @@ ES6 reached "proposal freeze" in May, 2011: no new major proposals can be added,
   * modules
   * standard modules
   * multiple globals
-  * object literals
-  * classes
+  * [object literals](object-literal-enhancements)
+  * [classes](classes)
   * [symbols](symbols)
 
 ## Control
 
   * proper tail calls
-  * iterators
+  * [iterators](iterators)
+  * [for-of loop](for-of)
   * generators
-  * array comprehensions
+  * [array comprehensions](array-comprehensions)
   * generator expressions
-  * shorter function syntax
+  * [arrow functions](arrow-functions)
 
 ## Collections
 
   * [weak map](weak-maps)
-  * maps and sets
+  * [maps and sets](map-set)
 
 ## Virtualization
 
@@ -47,15 +48,16 @@ ES6 reached "proposal freeze" in May, 2011: no new major proposals can be added,
 ## Data
 
   * binary data
-  * string interpolation
+  * [template strings](template-strings)
 
 ## API improvements
 
-  * `Object.is`
-  * `Number` improvements
+  * [`Array` improvements](array-improvements)
+  * [`Object.is`](egal)
+  * [`Number` improvements](number)
   * regexp improvements
   * `String` improvements
-  * `Math` improvements
+  * [`Math` improvements](math)
   * `Function` improvements
 
 ## Breaking changes

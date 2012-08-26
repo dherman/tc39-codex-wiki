@@ -24,9 +24,9 @@ foo(); // 5
 Only trailing parameters may have default values:
 
 ```js
-function foo(x,y=5){}
-function foo(x=5,y=5){}
-function foo(x,y="hello",z=this){}
+function foo(x, y=5){}
+function foo(x=5, y=5){}
+function foo(x, y="hello", z=this){}
 ```
 
 ## Evaluation
@@ -38,7 +38,7 @@ Any value is evaluated in the scope of the function, so `this` will resolve to w
 Note that passing on `undefined` makes the parameter be initialised by the default value. This is not the case for `null`.
 
 ```js
-function foo(x=5,y=6){ log(x,y); }
+function foo(x=5, y=6){ log(x,y); }
 foo(undefined, null); // 5 null
 ```
 
@@ -49,7 +49,7 @@ The arity (`.length`) of the function will be the number of parameters that have
 ```js
 (function(a){}).length // 1
 (function(a=5){}).length // 0
-(function(a,b,c=5){}).length // 2
+(function(a, b, c=5){}).length // 2
 ```
 
 

@@ -5,6 +5,7 @@
 # Spread
 
 *Champions*: Allen Wirfs-Brock, Brendan Eich, Erik Arvidsson<br/>
+[ES Wiki](http://wiki.ecmascript.org/doku.php?id=harmony:spread)
 
 The spread construct allows an expression to be expanded in places where
 multiple arguments (for function calls) or multiple elements (for array
@@ -48,7 +49,7 @@ f(-1, ...args, 2, ...[3]);
 **Example:** Today if you have an array and want to create a new array with the
 existing one being part of it, the array literal syntax is no longer sufficient
 and you have to fall back to imperative code, using a combination of `push`,
-`splice`, `concat` etc. With spread syntax this becomes much more succingt.
+`splice`, `concat` etc. With spread syntax this becomes much more succinct.
 
 ```javascript
 var parts = ['shoulder', 'knees'];
@@ -94,8 +95,8 @@ arr1.push(...arr2);
 
 ## Converting any array like
 
-Since the spread construct for array literals copies every item of any object
-over to a new array it is a convenient way to ensure that you have a real `Array`.
+Since the spread construct for array literals copies every property between [0, length) of any object
+into a new array it is a convenient way to ensure that you get a real `Array`.
 
 ```javascript
 var nodeList = document.querySelectorAll('div');
