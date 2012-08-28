@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ECMAScript Wiki - Weak Maps</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gentium+Basic:400italic,700italic|Buenard:400,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata" type="text/css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <link rel="icon" href="/public/images/favicon.ico">
+  </head>
+  <body>
+    <div id="breadcrumbs-container">
+      <ol id="breadcrumbs">
+        <li class="crumb-0 not-last"><a href="/">home</a></li>
+        <li class="crumb-1 not-last"><a href="/es6">es6</a></li>
+        <li class="crumb-2 last"><a href="/es6/weak-map">weak map</a></li>
+      </ol>
+    </div>
+    <div id="content">
+      <div id="content-body">
+        <article><p><em>Champions</em>: Mark Miller<br/>
+<em>Details</em>: <a href="http://wiki.ecmascript.org/doku.php?id=harmony:weak_maps">here</a>
+
+</p>
+<h1>Weak Maps</h1>
+<p><code>WeakMap</code>s help developers avoid memory leaks by holding references to their properties <em>weakly</em>, meaning that if a <code>WeakMap</code> is the only object with a reference to another object, the GC may collect the referened object. This behavior differs from all variable references in ES5.
+
+</p>
+<p>A key property of Weak Maps is the <em>inability to enumerate their keys</em>. This is necessary to prevent attackers observing the internal behavior of other systems in the environment which share weakly-mapped objects. Should the number or names of items in the collection be discoverable from the API, even if the values aren&#39;t, <code>WeakMap</code> instances might create a <a href="http://en.wikipedia.org/wiki/Side_channel_attack">side channel</a> where one was previously not available.
+
+</p>
+<p><code>WeakMap</code> instances have the same <code>set</code> and <code>get</code> signature as <a href="map-set">Maps</a> with one extra restriction: <em>keys must be Objects</em>:
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">let</span> m = <span class="keyword">new</span> WeakMap();
+m.set(<span class="string">'something'</span>, <span class="string">'something'</span>.length);  <span class="comment">// Exception!</span>
+<span class="comment">// TypeError: Invalid value used as weak map key</span>
+m.has(<span class="string">'something'</span>);                      <span class="comment">// Exception!</span>
+<span class="comment">// TypeError: Invalid value used as weak map key</span>
+
+<span class="keyword">let</span> wmk = {};
+m.set(wmk, <span class="string">'thinger'</span>);  <span class="comment">// wmk → 'thinger'</span>
+m.get(wmk);             <span class="comment">// 'thinger'</span>
+m.has(wmk);             <span class="comment">// true</span>
+m.<span class="keyword">delete</span>(wmk);          <span class="comment">// true</span>
+m.has(wmk);             <span class="comment">// false</span></code></pre>
+</article>
+      </div>
+    </div>
+    <footer>
+      <div id="footer-body">
+        <p>Built by <a href="http://codexjs.com">Codex</a><span class="footsep">&ndash;</span><a href="https://github.com/dherman/tc39-codex-wiki/blob/master/data/es6/weak-map/index.md">View Source</a><span class="footsep">&ndash;</span><a href="http://ecma-international.org/ecma-262/5.1/">ES5.1</a><span class="footsep">&ndash;</span><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Draft</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
