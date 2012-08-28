@@ -37,7 +37,7 @@ ES6 reached "proposal freeze" in May, 2011: no new major proposals can be added,
 
 ## Collections
 
-  * [weak map](weak-maps)
+  * [weak map](weak-map)
   * [maps and sets](map-set)
 
 ## Virtualization
