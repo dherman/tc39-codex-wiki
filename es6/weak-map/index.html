@@ -22,7 +22,7 @@
 
 </p>
 <h1>Weak Maps</h1>
-<p><code>WeakMap</code>s help developers avoid memory leaks by holding references to their properties <em>weakly</em>, meaning that if a <code>WeakMap</code> is the only object with a reference to another object, the GC may collect the referened object. This behavior differs from all variable references in ES5.
+<p><code>WeakMap</code>s help developers avoid memory leaks by holding references to their properties <em>weakly</em>, meaning that if a <code>WeakMap</code> is the only object with a reference to another object, the GC may collect the referenced object. This behavior differs from all variable references in ES5.
 
 </p>
 <p>A key property of Weak Maps is the <em>inability to enumerate their keys</em>. This is necessary to prevent attackers observing the internal behavior of other systems in the environment which share weakly-mapped objects. Should the number or names of items in the collection be discoverable from the API, even if the values aren&#39;t, <code>WeakMap</code> instances might create a <a href="http://en.wikipedia.org/wiki/Side_channel_attack">side channel</a> where one was previously not available.
