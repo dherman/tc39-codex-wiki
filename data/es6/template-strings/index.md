@@ -9,7 +9,7 @@
 
 Allows string literals with embedded expressions in them. This is often referred
 to as string interpolation. The ES Harmony name for this has histoprically been
-Quasi Litarals.
+Quasi Literals.
 
 *Details*: [full proposal](details)
 
