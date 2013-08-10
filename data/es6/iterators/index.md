@@ -58,3 +58,4 @@ A few builtin functions can operate on any iterable object. For example, pass an
 ```javascript
     var data = [1, 2, 1, 3, 1, 2, 1];
     var s = Set(data);  // A set with the three values 1, 2, 3
+```
