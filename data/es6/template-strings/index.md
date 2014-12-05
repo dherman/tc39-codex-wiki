@@ -8,7 +8,7 @@
 [ES Wiki](http://wiki.ecmascript.org/doku.php?id=harmony:quasis)
 
 Allows string literals with embedded expressions in them. This is often referred
-to as string interpolation. The ES Harmony name for this has histoprically been
+to as string interpolation. The ES Harmony name for this has historically been
 Quasi Literals.
 
 *Details*: [full proposal](details)
