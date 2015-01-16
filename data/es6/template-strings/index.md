@@ -33,7 +33,7 @@ var y = 2;
 
 ## Multiline strings
 
-**Example:** Template strings can be used for mutliline strings:
+**Example:** Template strings can be used for multiline strings:
 
 ```javascript
 var s = `a
